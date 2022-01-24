@@ -1,0 +1,23 @@
+
+    <div class="sidenav">
+        <div class="login-main-text">
+        <img [src]="logoURL" alt="login">
+        </div>
+    </div>
+<div class="main">
+    <div class="login-form login-main-text">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for= "email">User Name</label>
+                <input type="email" id = "email"class="input form-control" formControlName = "email" placeholder="Enter Email" >
+             </div>
+             <div class="form-group">
+                <label for = "password">Password</label>
+                <input type="password" id = "password"class="input form-control" placeholder="Enter Password" formControlName = "password"  >
+             </div>
+             <br>
+             <button type="submit" class="btn btn btn-secondary col-sm-5">Register</button>
+             <button type="submit" class="btn btn-right col-sm-5">Login</button>
+          </form>
+    </div>
+</div>
