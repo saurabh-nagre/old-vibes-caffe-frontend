@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { getAuth, signInWithEmailAndPassword, User } from "firebase/auth";
+import { FormBuilder, NgModel, Validators } from '@angular/forms';
 import {app} from "src/firabaseapp";
+import { NavigationExtras, Router, RouterState } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
-
+  
   logoURL = "/assets/logo.png";
   appInitialiser = app;
   loginForm = this.formBuilder.group({
     email:[''],
     password:[''],
   })
- 
+  user!:User;
   constructor(
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private router:Router,
   ) {}
   
   
@@ -31,14 +34,22 @@ export class LoginComponent{
       signInWithEmailAndPassword(auth,email.value , password.value)
       .then((userCredential) => {
         const user = userCredential.user;
-        alert("Login Successfull");
-
+        
+        const navigationExtras:NavigationExtras = {
+          queryParams:{
+            currentUser: user,
+          },
+        }
+        
+        this.router.navigate(["/dashboard"],navigationExtras);
         this.loginForm.reset();
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        this.loginForm.controls['password'].setValue('');
         alert("login failed");
+
       });
 
       }

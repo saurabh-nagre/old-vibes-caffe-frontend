@@ -1,0 +1,21 @@
+.itemname{
+    font-size: small;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.iteminput{
+    height: fit-content;
+    width: 20%; 
+    margin-inline: 5px;
+}
+.itemcheckbox{
+    margin-inline:5px; 
+    width: 20%;
+}
+.listitem{
+    margin-top: 10px;
+}
+
+.listitem:hover{
+    background-color: rgb(176, 165, 235);
+}
