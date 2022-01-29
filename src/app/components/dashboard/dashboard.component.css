@@ -1,14 +1,17 @@
 div {
     text-align: center;
 }
-
 .figures{
     float: right;
 }
-
+input, button{
+    margin: 5px;
+}
 .header{
     color:white;
 }
+
+
 .categories{
     background-color:lightyellow;
 }

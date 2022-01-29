@@ -1,6 +1,9 @@
-<div class="container listitem border">
-    <span class="itemname">{{item.name}} </span><br>
-    <input type="number" class="iteminput"/>
-    <span>{{item.price|currency:'INR'}} </span>
-    <input type = "checkbox" class="itemcheckbox"/>
+<div class="container listmyitem border">
+    <span class="itemname" [hidden]="myisEditable">{{item.name}}</span>
+    <input type="text" [hidden]="!myisEditable" [(ngModel)] = "myitemName"><br>
+    <input type="number" min = '0' class="iteminput" [hidden]="myisEditable" [(ngModel)] = "myitemCount"/>
+    <span [hidden]="myisEditable">{{item.price|currency:'INR'}}</span>
+    <input type="number" min="0" class="iteminput" [hidden]="!myisEditable" [(ngModel)] = "myitemPrice"/>
+    <input type = "checkbox" class="itemcheckbox" [checked] = "isChecked" (change)= "makeChecked()">
+    <button class="btn btn-sm btn-primary" [hidden]="!myisEditable" (click)="saveChange()" >Save</button>
 </div>

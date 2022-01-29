@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListItemComponent } from './components/dashboard/list-item/list-item.component';
+import { FirestoreappsService } from './services/firestoreapps.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ListItemComponent } from './components/dashboard/list-item/list-item.co
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FirestoreappsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,6 +17,7 @@ export class LoginComponent{
     email:[''],
     password:[''],
   })
+  require = true
   user!:User;
   constructor(
     private formBuilder : FormBuilder,
