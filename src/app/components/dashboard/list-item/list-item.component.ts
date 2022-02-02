@@ -1,6 +1,6 @@
-import { isNgTemplate } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
-import { collection,setDoc ,doc, getFirestore, getDoc} from 'firebase/firestore';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { setDoc ,doc, getDoc, deleteDoc} from 'firebase/firestore';
+import { CartService } from 'src/app/services/cart-services/cart.service';
 import { FirestoreappsService } from 'src/app/services/firestoreapps.service';
 
 @Component({
@@ -14,12 +14,15 @@ export class ListItemComponent implements OnInit {
   @Input() item = {name:'',price: 0,id:'',category:''};
   @Input() isEditable:boolean = false;
   
+  @Output() deleteItemEvent = new EventEmitter<string>();
   myitemName = this.item.name
   myitemCount = 0
   myitemPrice = this.item.price
-  myisEditable = false
   isChecked = false
-  constructor(private firestoreservice:FirestoreappsService) {
+  path:any
+  db:any
+  constructor(private firestoreservice:FirestoreappsService,
+    private cartService:CartService) {
    }
   
   ngOnInit(): void {
@@ -27,23 +30,39 @@ export class ListItemComponent implements OnInit {
 
   makeChecked(){
     this.isChecked = !this.isChecked;
-    if(this.isEditable && this.isChecked){
-        this.myisEditable = true
-        this.myitemName = this.item.name
-        this.myitemPrice = this.item.price
+    this.myitemName = this.item.name
+    this.myitemPrice = this.item.price
+
+    if(!this.isChecked){
+      this.myitemCount = 0;
     }
-    else{
-      this.myisEditable  = false
+  }
+  
+  async deleteItem(){
+    let shouldDelete = confirm("Do you want to delete "+this.item.name+"?");
+    if(shouldDelete){
+     this.path = "FoodCategories/categories/"+this.item.category+"/"+this.item.id;
+     this.db = this.firestoreservice.getDatabase();
+        await deleteDoc(doc(this.db,this.path.toString())).then(()=>{
+          console.log(this.item.id);
+          this.deleteItemEvent.emit(this.item.id);
+        });
     }
+  }
+
+  async changeCount(){
+    //function to add this time into cart
+    this.cartService.pushToCart({name:this.item.name,price:this.item.price,count:this.myitemCount});
+        
   }
 
   async saveChange(){
     const myconfirmation = confirm("Do you want to change '"+this.item.name+"' to '"+ this.myitemName+"' from price "+this.item.price
     +" to "+this.myitemPrice+" ?");
-    const db = this.firestoreservice.getDatabase();
-    const path = "FoodCategories/categories/"+this.item.category+"/"+this.item.id;
+    this.path = "FoodCategories/categories/"+this.item.category+"/"+this.item.id;
+    this.db = this.firestoreservice.getDatabase();
       if(myconfirmation){
-          await setDoc(doc(db,path.toString()),{
+          await setDoc(doc(this.db,this.path.toString()),{
               name : this.myitemName,
               price:this.myitemPrice,
               category:this.item.category,
@@ -52,7 +71,7 @@ export class ListItemComponent implements OnInit {
              this.makeChecked();
           })
           
-          const docref = await getDoc(doc(db,path))
+          const docref = await getDoc(doc(this.db,this.path))
           if(docref.exists()){
             this.item.name = docref.get('name');
             this.item.price = docref.get('price');

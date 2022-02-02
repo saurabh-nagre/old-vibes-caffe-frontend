@@ -1,21 +1,37 @@
 .itemname{
-    font-size: small;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 0.95em;
+    font-family: Georgia, 'Times New Roman', Times, sans-serif;
 }
-
+button{
+    size: 40px;
+    margin: 5px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    color:white;
+    font-size: 80%;
+}
+button:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
 .iteminput{
     height: fit-content;
-    width: 30%; 
+    width:30%; 
     margin-inline: 5px;
 }
-.itemcheckbox{
-    margin-inline:5px; 
-    width: 20%;
-}
-.listitem{
+.list-item{
     margin-top: 10px;
+    padding: 10px;
+}
+#delete-item{
+    float: right;
+    color:gray;
+    cursor:pointer;
+}
+#delete-item:hover{
+    z-index: 1;
+    color: black;
 }
 
-.listitem:hover{
-    background-color: rgb(176, 165, 235);
+.list-item:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }

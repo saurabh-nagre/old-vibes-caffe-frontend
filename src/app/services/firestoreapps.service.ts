@@ -1,29 +1,18 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from "firebase/app";
 import { collection, getFirestore, addDoc, setDoc,getDocs } from 'firebase/firestore';
+import { LoginService } from './auth-services/login.service';
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreappsService {
 
   categories = ["Breads & Omelettes",'Pizza\'s & Pasta\'s','Burgers & Fries','Tea Coffee Mocktails','Smoothies Desserts'];
-
-  private firebaseConfig = {
-    apiKey: "AIzaSyA-d67oIXZXuuQeM_kM0gWXjUNi51haGCs",
-    authDomain: "oldvibescaffe.firebaseapp.com",
-    projectId: "oldvibescaffe",
-    storageBucket: "oldvibescaffe.appspot.com",
-    messagingSenderId: "103711601789",
-    appId: "1:103711601789:web:8e66066e603bb9fbc42d14",
-    measurementId: "G-NJNQLF5PY9"
-  }
   private app:any
   private db:any
-  constructor( ) { 
-    this.app = initializeApp(this.firebaseConfig);
-    this.db = getFirestore()
+  constructor(private loginService:LoginService ) { 
+    this.app = this.loginService.getFirebaseApp();
+    this.db = getFirestore(this.app)
   }
-  
   getDatabase(){
     return this.db;
   }
@@ -131,7 +120,6 @@ export class FirestoreappsService {
     }
     return requestedData;
   }
-
 
   async addItemtoBreadsOmellettes(Name:string,Price:number){
     try{

@@ -1,0 +1,16 @@
+<div>
+    <div class ="container border boarder-black" *ngFor="let item of items">
+        <div class="row container border boarder-black">
+            <div class="col border boarder-black">{{item.name}}</div>
+            <div class="col border boarder-black">{{item.count}}</div>
+            <div class="col border boarder-black">{{item.price}}</div>
+            <div class="col border boarder-black">{{item.price * item.count}}</div>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button>Print</button>
+        <button>Save</button>
+        <button>Cancel</button>
+    </div>
+</div>

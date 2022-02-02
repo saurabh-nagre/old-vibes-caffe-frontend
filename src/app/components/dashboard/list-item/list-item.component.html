@@ -1,9 +1,10 @@
-<div class="container listmyitem border">
-    <span class="itemname" [hidden]="myisEditable">{{item.name}}</span>
-    <input type="text" [hidden]="!myisEditable" [(ngModel)] = "myitemName"><br>
-    <input type="number" min = '0' class="iteminput" [hidden]="myisEditable" [(ngModel)] = "myitemCount"/>
-    <span [hidden]="myisEditable">{{item.price|currency:'INR'}}</span>
-    <input type="number" min="0" class="iteminput" [hidden]="!myisEditable" [(ngModel)] = "myitemPrice"/>
+<div class="list-item border border-dark">
+    <span id="delete-item" [hidden]="!isChecked || !isEditable" (click)="deleteItem()">&times;</span>
+    <span class="itemname" [hidden]="isEditable && isChecked">{{item.name}}</span>
+    <input type="text" [hidden]="!isChecked || !isEditable" [(ngModel)] = "myitemName"><br>
     <input type = "checkbox" class="itemcheckbox" [checked] = "isChecked" (change)= "makeChecked()">
-    <button class="btn btn-sm btn-primary" [hidden]="!myisEditable" (click)="saveChange()" >Save</button>
+    <input type="number" min = '0' [disabled]="!isChecked" class="iteminput" [hidden]="isChecked && isEditable" [(ngModel)] = "myitemCount" (change)="changeCount()"/>
+    <span [hidden]="isChecked && isEditable">{{item.price|currency:'INR'}}</span>
+    <input type="number" min="0" class="iteminput" [hidden]="!isChecked || !isEditable" [(ngModel)] = "myitemPrice"/>
+    <button class="" [hidden]="!isChecked || !isEditable" (click)="saveChange()" >Save</button>
 </div>

@@ -12,7 +12,7 @@
         <span class="border border-dark container text-black">Today: &#8377; 7425  </span>
         <span class="border border-dark container text-black">Month: &#8377; 72453  </span>
         <span class="border border-dark container text-black">Year: &#8377; 3743345  </span>
-        <button type ="button"  class="btn btn-sm btn-primary ">Proceed</button>
+        <button type ="button"  class="btn btn-sm btn-primary" (click)="proceedToPrint()">Proceed</button>
     </div>
 
     <div class="editor">
@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col list1">
             <div class="row"  *ngFor="let listitem of breadomelette">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden"></app-list-item>
+                <app-list-item [item]="listitem" (deleteItemEvent)="deleteList1($event)" [isEditable] = "!isHidden"></app-list-item>
                 <br>
             </div>
             
@@ -47,7 +47,7 @@
         </div>
         <div class="col list2">
             <div class="row"  *ngFor="let listitem of pizzapasta">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden"></app-list-item>
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList2($event)"></app-list-item>
                 <br>
             </div>
 
@@ -62,7 +62,7 @@
         </div>
         <div class="col list3">
             <div class="row"  *ngFor="let listitem of burgerfries">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden"></app-list-item>
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList3($event)"></app-list-item>
                 <br>
             </div>
             <div class="new-item-add">
@@ -76,7 +76,7 @@
         </div>
         <div class="col list4">
             <div class="row"  *ngFor="let listitem of teacoffeemocktails">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden"></app-list-item>
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList4($event)"></app-list-item>
                 <br>
             </div>
             <div class="new-item-add">
@@ -90,7 +90,7 @@
         </div>
         <div class="col list5">
             <div class="row"  *ngFor="let listitem of smoothiesdesserts">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden"></app-list-item>
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList5($event)"></app-list-item>
                 <br>
             </div>
             <div class="new-item-add">
