@@ -1,0 +1,35 @@
+.form{
+    width: 50%;
+    margin-inline: 25%;
+    padding-bottom: 50px;
+}
+h3,h5{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+.contactDetails{
+    width: 60%;
+    margin-inline: 20%;
+    margin-top: 10%;
+    padding-bottom: 40px;
+}
+#contact{
+    margin: 5px;
+}
+h6{
+    text-align: center;
+    color:whitesmoke;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.login-form{
+    width: 60%;
+    margin-inline: 20%;
+    margin-top: 10%;
+    padding-bottom: 40px;
+} 
+.login-btn{
+    background-color: black;
+    color: white;
+}
+

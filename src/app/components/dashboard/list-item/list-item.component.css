@@ -2,6 +2,7 @@
     font-size: 0.95em;
     font-family: Georgia, 'Times New Roman', Times, sans-serif;
 }
+
 button{
     size: 40px;
     margin: 5px;
@@ -18,6 +19,7 @@ button:hover{
     width:30%; 
     margin-inline: 5px;
 }
+
 .list-item{
     margin-top: 10px;
     padding: 10px;

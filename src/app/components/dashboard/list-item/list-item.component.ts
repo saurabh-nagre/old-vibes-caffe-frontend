@@ -23,9 +23,14 @@ export class ListItemComponent implements OnInit {
   db:any
   constructor(private firestoreservice:FirestoreappsService,
     private cartService:CartService) {
-   }
+     
+   }    
   
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.myitemCount = this.cartService.getCount(this.item.name);
+    if(this.myitemCount>0){
+      this.isChecked = true;
+    }
   }
 
   makeChecked(){
@@ -35,6 +40,7 @@ export class ListItemComponent implements OnInit {
 
     if(!this.isChecked){
       this.myitemCount = 0;
+      this.cartService.removeItem(this.item.name);
     }
   }
   
@@ -50,10 +56,10 @@ export class ListItemComponent implements OnInit {
     }
   }
 
-  async changeCount(){
+  changeCount(){
     //function to add this time into cart
     this.cartService.pushToCart({name:this.item.name,price:this.item.price,count:this.myitemCount});
-        
+    
   }
 
   async saveChange(){

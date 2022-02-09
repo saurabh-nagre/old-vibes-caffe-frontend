@@ -1,0 +1,26 @@
+<div class="form">
+    <h5>Login Details</h5>
+    <div class="login-form">
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+           <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name = "email" class="form-control" id="email" value = {{email}} placeholder="Enter Email" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id = "password" placeholder="Enter Password" formControlName = "password" >
+            </div>
+            <br>
+            <span>*you can login using these details</span>
+           <button type="submit" class="btn login-btn col-sm-12">Update Login Details</button>
+        </form>
+    </div>
+    
+    <div class="contactDetails">
+        <div class="mb-3">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="number" min="1000000000" name = "contact" id="contact" [(ngModel)]="contact" placeholder="Enter contact" >
+        </div><br>
+        <button type="submit" class="btn login-btn col-sm-6" (click)="submitContact()">Update COntact</button>
+    </div>
+</div>

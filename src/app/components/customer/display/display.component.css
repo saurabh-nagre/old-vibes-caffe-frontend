@@ -1,0 +1,129 @@
+@media screen and (min-width:400px) {
+    
+    .item{
+        width: 100%;
+        text-align-last: end;
+    }
+    .price{
+        margin-left: 100px;
+    }
+    .bg-header{
+        height: 110px;
+    }
+    #category-text{
+        font-size: small;
+    }
+}
+@media screen and (min-width:900px) {
+    .item{
+        width: 50%;
+        display: inline;
+        text-align-last: right;
+    }
+    .name{
+        margin: 100px;
+    }
+    .price{
+        margin: 100px;
+    }
+    .bg-header{
+        height: 150px;
+    }
+    #category-text{
+        font-size: larger;
+    }
+}
+
+.main{
+   background-color:lightyellow;
+   padding-bottom: 100px;
+}
+.header{
+    width: 100%;
+    background-color: black;
+    height: 47px;
+}
+
+h6{
+    font-family:cursive;
+    font-size: large;
+    color: whitesmoke;
+    float:left;
+    margin: 5px;
+    margin-top: 7px;
+    margin-left: 100px;
+    vertical-align:middle;
+}
+
+#header-button{
+    height: 30px;
+    width: fit-content;
+    float: right;
+    margin: 5px;
+    background: transparent;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    color: white;
+    z-index: 1;
+    font-size: smaller;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+#header-button:hover{
+    background-color: lightblue;
+    color: black;
+    border-color: black;
+    text-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.bg-header{
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-position: 20%;
+    background-size:cover;
+    color: yellow;
+}
+.bg-header:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+#category-text{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.item{
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.list1{
+    background-color: lightpink;
+}
+.list2{
+    background-color:lightcoral;
+}
+.list3{
+    background-color: lightgreen;
+}
+.list4{
+    background-color: wheat;
+}
+.list5{
+    background-color: lightskyblue;
+}
+.menu{
+    margin: 30px;
+}
+
+.list1,.list2,.list3,.list4,.list5{
+    margin: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.name,.price {
+    font-family:cursive;
+    font-size: small;
+}

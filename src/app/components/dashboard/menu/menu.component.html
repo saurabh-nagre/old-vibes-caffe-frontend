@@ -1,0 +1,89 @@
+<div class="editor">
+    <button type ="button"  class="btn btn-sm btn-primary" (click)="proceedToPrint()">Proceed</button>
+    <button class="btn btn-sm btn-warning text-white" style="border-radius: 5px;" [style.background-color]="isHidden ? '#a52a2a':'#008000'" (click)="changeHidden()"> {{btnName}} </button>
+</div>
+<div class="menu">
+    <div class="row">
+        <div class="col border categories"  *ngFor="let category of categories" >
+            <div class = "bg-header" [style.background-image]="category.imageurl" >
+                <h5 id ="category-text">{{category.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col list1">
+            <div class="row"  *ngFor="let listitem of breadomelette">
+                <app-list-item [item]="listitem" (deleteItemEvent)="deleteList1($event)" [isEditable] = "!isHidden"></app-list-item>
+                <br>
+            </div>
+            
+            <div class="new-item-add">
+                <button class="btn btn-sm btn-primary" (click)="showAddType1()" [hidden]="!isAddType1Hidden">Add New Item</button><br>
+                <label for = "type1name" [hidden]="isAddType1Hidden">Food Item Name</label>
+                <input type="text" id = "type1name" [hidden]="isAddType1Hidden" [(ngModel)] ='type1Name'/><br>
+                <label for="type1price" [hidden]="isAddType1Hidden">Food Item Price</label>
+                <input type="number" min="0" id = "type1price" [hidden]="isAddType1Hidden" [(ngModel)] = 'type1Price'/><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType1Hidden" (click)="submitAddType1()">
+            </div>
+
+        </div>
+        <div class="col list2">
+            <div class="row"  *ngFor="let listitem of pizzapasta">
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList2($event)"></app-list-item>
+                <br>
+            </div>
+
+            <div class="new-item-add">
+                <button class="btn btn-sm btn-primary" (click)="showAddType2()" [hidden]="!isAddType2Hidden">Add New Item</button><br>
+                <label for = "type2name" [hidden]="isAddType2Hidden">Food Item Name</label>
+                <input type="text" id = "type2name" [hidden]="isAddType2Hidden" [(ngModel)] ='type2Name'/><br>
+                <label for="type2price" [hidden]="isAddType2Hidden">Food Item Price</label>
+                <input type="number" min="0" id = "type2price" [hidden]="isAddType2Hidden" [(ngModel)] = 'type2Price'/><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType2Hidden" (click)="submitAddType2()">
+            </div> 
+        </div>
+        <div class="col list3">
+            <div class="row"  *ngFor="let listitem of burgerfries">
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList3($event)"></app-list-item>
+                <br>
+            </div>
+            <div class="new-item-add">
+                <button class="btn btn-sm btn-primary" (click)="showAddType3()" [hidden]="!isAddType3Hidden">Add New Item</button><br>
+                <label for = "type3name" [hidden]="isAddType3Hidden">Food Item Name</label>
+                <input type="text" id = "type3name" [hidden]="isAddType3Hidden" [(ngModel)] ='type3Name'/><br>
+                <label for="type3price" [hidden]="isAddType3Hidden">Food Item Price</label>
+                <input type="number" min="0" id = "type3price" [hidden]="isAddType3Hidden" [(ngModel)] = 'type3Price'/><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType3Hidden" (click)="submitAddType3()">
+            </div> 
+        </div>
+        <div class="col list4">
+            <div class="row"  *ngFor="let listitem of teacoffeemocktails">
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList4($event)"></app-list-item>
+                <br>
+            </div>
+            <div class="new-item-add">
+                <button class="btn btn-sm btn-primary" (click)="showAddType4()" [hidden]="!isAddType4Hidden">Add New Item</button><br>
+                <label for = "type4name" [hidden]="isAddType4Hidden">Food Item Name</label>
+                <input type="text" id = "type4name" [hidden]="isAddType4Hidden" [(ngModel)] ='type4Name'/><br>
+                <label for="type4price" [hidden]="isAddType4Hidden">Food Item Price</label>
+                <input type="number" min="0" id = "type4price" [hidden]="isAddType4Hidden" [(ngModel)] = 'type4Price'/><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType4Hidden" (click)="submitAddType4()">
+            </div> 
+        </div>
+        <div class="col list5">
+            <div class="row"  *ngFor="let listitem of smoothiesdesserts">
+                <app-list-item [item]="listitem" [isEditable] = "!isHidden" (deleteItemEvent)="deleteList5($event)"></app-list-item>
+                <br>
+            </div>
+            <div class="new-item-add">
+                <button class="btn btn-sm btn-primary" (click)="showAddType5()" [hidden]="!isAddType5Hidden">Add New Item</button><br>
+                <label for = "type5name" [hidden]="isAddType5Hidden">Food Item Name</label>
+                <input type="text" id = "type5name" [hidden]="isAddType5Hidden" [(ngModel)] ='type5Name'/><br>
+                <label for="type5price" [hidden]="isAddType5Hidden">Food Item Price</label>
+                <input type="number" min="0" id = "type5price" [hidden]="isAddType5Hidden" [(ngModel)] = 'type5Price'/><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType5Hidden" (click)="submitAddType5()">
+            </div> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+.main{
+    border: 1px;
+    margin-left: 30%;
+    width: 40%;
+    text-align: center  ;
+    margin-top: 50px;
+    outline: solid 2px black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+    padding: 20px;
+}
+h4{ 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: small;
+    text-align: center;
+    text-decoration: underline;
+}
+.header{
+    height: 13%;
+    padding-bottom: 5px;
+}
+
+img{
+    width: 80%;
+    height: 80%;
+}
+h6{ 
+    font-size: 15px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+hr {
+    margin:2px 2px 2px 2px;
+}
+.groupbtn{
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 20px;
+}
+button{
+    margin-inline: 5px;
+}
+.titem{
+    font-size:smaller;
+    text-align: left;
+    margin-left: 20px;
+}
+.item{
+    border-color: grey;
+    background-color: white;
+    margin: 5px;
+    border-width: 0px;
+    font-size: small;
+    text-align: left;
+    width: 40%;
+    stroke-linecap: round;
+    box-shadow: none;
+}
+

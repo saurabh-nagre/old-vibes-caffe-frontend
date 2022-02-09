@@ -1,31 +1,21 @@
+@media screen and (min-width :700px) {
+   .links{
+       width: 100%;
+   }
+   .figures{
+       width: 100%;
+       margin: 0px;
+   }
+   
+}
+.header{
+    background-color:lightskyblue;
+    margin-bottom: 0px;
+}
 div {
     text-align: center;
 }
 .figures{
     float: right;
-}
-input, button{
-    margin: 5px;
-}
-.header{
-    color:white;
-}
-
-.categories{
-    background-color:lightyellow;
-}
-.list1{
-    background-color: lightpink;
-}
-.list2{
-    background-color: lightyellow;
-}
-.list3{
-    background-color: lightgreen;
-}
-.list4{
-    background-color: wheat;
-}
-.list5{
-    background-color: lightskyblue;
+    margin-right: 250px;
 }

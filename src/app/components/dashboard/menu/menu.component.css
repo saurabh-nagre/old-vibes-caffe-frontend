@@ -1,0 +1,50 @@
+input, button{
+    margin: 5px;
+}
+button:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.editor{
+    position:absolute;
+    right: 10px;
+    top: 5px;
+}
+.header{
+    color:white;
+}
+div{
+    text-align: center;
+}
+.categories{
+    background-color:lightyellow;
+    padding: 0px;
+}
+.bg-header{
+    padding: 0px;
+    background-repeat: no-repeat;
+    height: 100px;
+    background-position-x: center;
+    background-position-y: center;
+    background-position: 20%;
+    background-size:cover;
+    color: yellow;
+}
+#category-text{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: medium;
+}
+.list1{
+    background-color: lightpink;
+}
+.list2{
+    background-color: lightyellow;
+}
+.list3{
+    background-color: lightgreen;
+}
+.list4{
+    background-color: wheat;
+}
+.list5{
+    background-color: lightskyblue;
+}

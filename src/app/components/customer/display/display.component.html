@@ -1,0 +1,48 @@
+<div class="main">
+    <div class="header">
+        <h6>Old Vibes Cafe</h6>
+        <button id = "header-button" [routerLink]="'login'" [replaceUrl]="true">Admin Login</button>
+    </div>
+    <div class="menu">
+        <div class="row">
+            <div class="col categories"  *ngFor="let category of categories" >
+                <div class = "bg-header" [style.background-image]="category.imageurl" (click)="changeList(category.name)" >
+                    <h5 id ="category-text" style="text-align: center;">{{category.name}}</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row list1 list" [hidden]="list1hidden">
+            <div class="col-2 item"  *ngFor="let item of breadomelette">
+                <span class="name">{{item.name}}</span>
+                <span class="price">{{item.price|currency:'INR'}}</span>
+            </div>
+        </div>
+        
+        <div class="row list2 list " [hidden]="list2hidden">
+            <div class="col-2 item"  *ngFor="let item of pizzapasta">
+                <span class="name">{{item.name}}</span>
+                <span class="price">{{item.price|currency:'INR'}}</span>
+            </div>
+        </div>
+        <div class="row list3 list " [hidden]="list3hidden">
+            <div class="col-2 item"  *ngFor="let item of burgerfries">
+                <span class="name">{{item.name}}</span>
+                <span class="price">{{item.price|currency:'INR'}}</span>
+            </div>
+        </div>
+        <div class="row list4 list " [hidden]="list4hidden">
+            <div class="col-2 item"  *ngFor="let item of teacoffeemocktails">
+                <span class="name">{{item.name}}</span>
+                <span class="price">{{item.price|currency:'INR'}}</span>
+            </div>
+        </div>
+        <div class="row list5 list " [hidden]="list5hidden">
+            <div class="col-2 item"  *ngFor="let item of smoothiesdesserts">
+                <span class="name">{{item.name}}</span>
+                <span class="price">{{item.price|currency:'INR'}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>

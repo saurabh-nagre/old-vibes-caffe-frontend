@@ -9,6 +9,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListItemComponent } from './components/dashboard/list-item/list-item.component';
 import { FirestoreappsService } from './services/firestoreapps.service';
 import { PrintComponent } from './components/print/print/print.component';
+import {  NgxPrintModule } from 'ngx-print';
+import { DisplayComponent } from './components/customer/display/display.component';
+import { MenuComponent } from './components/dashboard/menu/menu.component';
+import { DiscountsComponent } from './components/dashboard/discounts/discounts.component';
+import { SalesComponent } from './components/dashboard/sales/sales.component';
+import { DetailsComponent } from './components/dashboard/details/details.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +22,19 @@ import { PrintComponent } from './components/print/print/print.component';
     LoginComponent,
     DashboardComponent,
     ListItemComponent,
-    PrintComponent
+    PrintComponent,
+    DisplayComponent,
+    MenuComponent,
+    DiscountsComponent,
+    SalesComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPrintModule
   ],
   providers: [FirestoreappsService],
   bootstrap: [AppComponent]

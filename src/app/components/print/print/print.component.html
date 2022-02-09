@@ -1,16 +1,63 @@
-<div>
-    <div class ="container border boarder-black" *ngFor="let item of items">
-        <div class="row container border boarder-black">
-            <div class="col border boarder-black">{{item.name}}</div>
-            <div class="col border boarder-black">{{item.count}}</div>
-            <div class="col border boarder-black">{{item.price}}</div>
-            <div class="col border boarder-black">{{item.price * item.count}}</div>
+<div class="main" id = "main" >
+    <div class="header row">
+        <div class="col header-item">
+            <img [src]="'assets/logo.png'"/>
+        </div>
+        
+        <div class="col header-item">
+            <h4>Old Vibes Cafe</h4>
+            <h6 >Shree Ananth bungalow,<br>
+            1148E WARD SYKES EXTENSION ,<br> 
+            Opposite IDFC First Bank Takala.<br> 
+            Kolhapur -416001<br>
+            contact:{{mycontact}}     
+            </h6>
         </div>
     </div>
+   
+    <hr>
+    <div>
+        <div class="align-items-start"> 
+            <label for = name>To: </label>
+            <input type="name" class="item" id="name" [(ngModel)] = "clientName" placeholder="Name">
+            <input type="number" [min]="0" class="item" style="margin-left: 20px;" [(ngModel)] = "clientNumber" placeholder="Mobile Number">
+        </div><hr>
+        <div class="titem ">  
+            <label for= "time">Date: </label> <span id="time">{{timeClock | date:'medium'}}</span><br/>
+            <label for = "Billno"><span id = "Billno">Bill No.: </span></label>
+        </div>
+        <hr>
+        <div class="row ">
+            <div class="col-6">Item</div>
+            <div class="col-2">Qty.</div>
+            <div class="col-2">Price</div>
+            <div class="col-2">Amount</div>
+        </div>
+        <hr>
+        <div class="row" *ngFor="let item of items">
+            <div class="col-6" style="max-lines: 1; ">{{item.name}}</div>
+            <div class="col-2">{{item.count}}</div>
+            <div class="col-2">{{item.price}}</div>
+            <div class="col-2">{{item.count*item.price}}</div>
+        </div>
 
-    <div class="btn-group">
-        <button>Print</button>
-        <button>Save</button>
-        <button>Cancel</button>
+        <hr>
+        <div class="row">
+            <div class="col">Total Qty.: {{totalQuantity}}</div>
+            <div class="col" >Sub Total: {{grandTotal}} </div>
+        </div>
+        <hr>
+        <div style="text-align:right;"><b>Grand Total: {{grandTotal}}</b></div>
+        <hr>
+
+        <h6>!!!Thank You Visit Again!!!</h6>
     </div>
+
+</div>  
+<div class = "groupbtn row align-items-center">
+    <button class="col btn btn-info btn-sm" type="button" printSectionId="main" ngxPrint [useExistingCss]="true" (click)="printBill()">Print</button>
+    <button class="col btn btn-success btn-sm" type="button"  (click)="saveBill()">Save</button>
+    <button class="col btn btn-danger btn-sm" type="button"  (click)="cancelBill()">Cancel</button>
+    <button class="col btn btn-warning btn-sm" (click)="backClick()">Edit</button>
 </div>
+    
