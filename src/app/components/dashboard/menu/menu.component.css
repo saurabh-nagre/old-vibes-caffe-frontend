@@ -1,9 +1,7 @@
 input, button{
     margin: 5px;
 }
-button:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
+
 .editor{
     position:absolute;
     right: 10px;
@@ -19,6 +17,38 @@ div{
     background-color:lightyellow;
     padding: 0px;
 }
+
+.table-slide{
+    height: 5%;
+    margin-bottom: 10px;
+}
+.table{
+    width: 5%;
+    border-radius: 15px;
+    background-color:rgb(155, 55, 55);
+    color: white;
+    float: left;
+    border-color:rgb(155, 55, 55);
+}
+
+#add-table{
+    width: 10%;
+    border-radius: 5px;
+    background-color: paleturquoise;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-color: paleturquoise;
+    font-size: medium;
+}
+#remove-table{
+    width: 10%;
+    border-radius: 5px;
+    background-color: orange;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-color: orange;
+    font-size: medium;
+}
 .bg-header{
         height: 200px;
         margin-bottom: 5px;
@@ -33,6 +63,15 @@ div{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: medium;
+}
+.clicked,button:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.clicked{
+    background-color: aquamarine;
+    border-color: aquamarine;
+    color:black;
 }
 
 #category-img{

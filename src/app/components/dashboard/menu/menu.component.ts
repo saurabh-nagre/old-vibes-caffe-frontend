@@ -11,9 +11,11 @@ import { FirestoreappsService } from 'src/app/services/firestoreapps.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  
+    
   currentUser!:User
   categories!:any
+  tableNo = 0
+  tableCount = 1
   breadomelette:{id:string,name:string,price:number,category: string;}[] = []
   pizzapasta:{id:string,name:string,price:number,category: string;}[] = []
   burgerfries:{id:string,name:string,price:number,category: string;}[] = []
@@ -23,7 +25,7 @@ export class MenuComponent implements OnInit {
             private firestoreservice:FirestoreappsService,
             private loginService:LoginService,
             private cartService:CartService) {
-      // const querypara = this.router.getCurrentNavigation()?.extras.queryParams
+     
       this.currentUser = this.loginService.getUser()
       if(!this.currentUser){
         this.router.navigate(['/login']);
@@ -48,6 +50,29 @@ export class MenuComponent implements OnInit {
       this.firestoreservice.getSmoothiesDesserts().then((value)=>{
         this.smoothiesdesserts = value.sort( this.camparator);    
       });
+      this.tableCount = this.cartService.getTotalTables();
+  }
+  counter(num:number){
+    return new Array(num);
+  }
+  changeTable(no:number){  
+    
+    if(confirm("Do you want to switch tables?")){
+      this.tableNo = no;
+    }
+    
+  }
+  addTable(){
+      this.cartService.addTable();
+      this.tableCount = this.cartService.getTotalTables();
+  }
+
+  removeTable(){
+    this.cartService.removeLastTable(); 
+    this.tableCount = this.cartService.getTotalTables();
+    if(this.tableNo>=this.tableCount){
+      this.tableNo = 0;
+    }
   }
 
   camparator(a:{id:string,name:string,price:number,category:string},b:{id:string,name:string,price:number,category:string}){
@@ -61,8 +86,8 @@ export class MenuComponent implements OnInit {
   }
   
   proceedToPrint(){
-    if(this.cartService.getCart().size){
-      this.router.navigate(["/print"],{replaceUrl:true});
+    if(this.cartService.getCart(this.tableNo).size){
+      this.router.navigate(["/print"],{queryParams:{tableno:this.tableNo},replaceUrl:true});
     }
     else alert("Please select items to proceed");
   }

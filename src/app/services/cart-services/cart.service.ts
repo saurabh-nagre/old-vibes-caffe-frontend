@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, subscribeOn } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,42 +8,60 @@ export class CartService {
 
   constructor() { }
 
-  private cartMap = new Map();
+  private tableArray:Array<Map<string,{name:string,price:number,count:number}>> = []
 
   private name:string = ""
   private number:number = 0
+
+  removeLastTable(){
+    if(this.tableArray.length>1)
+      this.tableArray.pop();
+  }
+  addTable(){
+    this.tableArray.push(new Map());
+  }
+
+  getTotalTables(){
+    if(this.tableArray.length==0)
+      this.addTable();
+    return this.tableArray.length;
+  }
+
+
   
-  pushToCart(item:{name:string,price:number,count:number}){
+  pushToCart(tableno:number,item:{name:string,price:number,count:number}){
+
     if(item.count==0 || item.count==undefined || item.count==null){
-      this.cartMap.delete(item.name);
+      this.tableArray[tableno].delete(item.name);
     }
     else{
-      this.cartMap.set(item.name,item);  
+      this.tableArray[tableno].set(item.name,item);  
     }
   }
-  removeItem(str:string){
-    if(this.cartMap.has(str)){
-      this.cartMap.delete(str);
+  removeItem(tableno:number,str:string){
+    if(this.tableArray[tableno].has(str)){
+      this.tableArray[tableno].delete(str);
     }
   }
 
-  getCount(str:string){
-    if(this.cartMap.has(str)){
-      return this.cartMap.get(str).count;
+  getCount(tableno:number,str:string){
+    if(this.tableArray[tableno].has(str)){
+      console.log("mycount: "+this.tableArray[tableno].get(str)?.count);
+      return this.tableArray[tableno].get(str)?.count;
     }
-    return 0;
+    else return 0;
   }
-  getCart(){
-    return this.cartMap
+  getCart(tableno:number){
+    return this.tableArray[tableno];
   }
-  clearCart(){
-    this.cartMap.clear();
-    if(this.cartMap.size){
+  clearCart(tableno:number,){
+    this.tableArray[tableno].clear();
+    if(this.tableArray[tableno].size){
       return false;
     }
     else return true;
   }
-
+  // client information for print
   saveClient(clientName:string,clientNumber:number){
     this.name = clientName;
     this.number = clientNumber;

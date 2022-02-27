@@ -1,0 +1,31 @@
+
+.header{
+    margin-left: 30%;
+}
+.mar{
+    margin: 5px;
+}
+.content{
+    border: 1px;
+    margin-left: 30%;
+    width: 40%;
+    text-align: center  ;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: solid 2px black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+}
+.item{
+    border-color: grey;
+    background-color: white;
+    margin-inline: 10px;
+    border-width: 0px;
+    font-size: small;
+    text-align: left;
+    width: 40%;
+}
+hr{
+    margin: 0px;
+    padding: 0px;
+}

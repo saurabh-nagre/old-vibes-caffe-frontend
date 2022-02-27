@@ -8,12 +8,13 @@
           <a class="nav-item nav-link" [routerLink]="['details']"  [replaceUrl]="true" >Owner Details</a>
         </div>
     </div>
-    <!-- <div class="figures ">
+    <div class="figures ">
         <span class="text-black">Revenue  </span>
-        <span class="border border-dark text-black">Today: &#8377;   </span>
-        <span class="border border-dark text-black">Month: &#8377;   </span>
-        <span class="border border-dark text-black">Year: &#8377;   </span>
-    </div> -->
+        <span class="border border-dark text-black pad">Today: &#8377; {{dailyRevenue}}  </span>
+        <span class="border border-dark text-black pad">Month: &#8377; {{monthlyRevenue}}   </span>
+        <span class="border border-dark text-black pad">Year: &#8377; {{yearlyRevenue}}  </span>
+    </div>
 </ul>
+
 
 <router-outlet></router-outlet>

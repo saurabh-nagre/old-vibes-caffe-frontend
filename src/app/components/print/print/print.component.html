@@ -24,7 +24,7 @@
         </div><hr>
         <div class="titem ">  
             <label for= "time">Date: </label> <span id="time">{{timeClock | date:'medium'}}</span><br/>
-            <label for = "Billno"><span id = "Billno">Bill No.: </span></label>
+            <label for = "Billno"><span id = "Billno">Bill No.: {{billId}} </span></label>
         </div>
         <hr>
         <div class="row ">
@@ -56,7 +56,7 @@
 </div>  
 <div class = "groupbtn row align-items-center">
     <button class="col btn btn-info btn-sm" type="button" printSectionId="main" ngxPrint [useExistingCss]="true" (click)="printBill()">Print</button>
-    <button class="col btn btn-success btn-sm" type="button"  (click)="saveBill()">Save</button>
+    <button class="col btn btn-success btn-sm" type="button" [disabled]="disable" (click)="saveBill()">Save</button>
     <button class="col btn btn-danger btn-sm" type="button"  (click)="cancelBill()">Cancel</button>
     <button class="col btn btn-warning btn-sm" (click)="backClick()">Edit</button>
 </div>

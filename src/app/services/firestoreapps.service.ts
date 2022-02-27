@@ -11,7 +11,7 @@ export class FirestoreappsService {
                 {name:'Burgers & Fries',imageurl:"/assets/img3.jpg"},
                 {name:'TeaCoffee Mocktails',imageurl:"/assets/img4.jpg"},
                 {name:'Smoothies & Desserts',imageurl:"/assets/img5.jpg"}];
-
+  
   private app:any
   private db:any
   constructor(private loginService:LoginService ) { 

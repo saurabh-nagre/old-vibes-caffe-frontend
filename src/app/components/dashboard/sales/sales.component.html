@@ -1,1 +1,45 @@
-<h2 style="text-align: center;">Sales section coming soon!</h2>
+<div class="header container align-items-center">
+    <input type="date" class="mar" [(ngModel)]="searchDate">
+    <button type="submit" class="btn btn-sm btn-success mar" (click)="startSearch()">Search</button>
+</div>
+<hr>
+<div class="content" [hidden]="hide">
+    <span class="item">Customer Served: {{report.costumerCount}}  |</span>
+    <span class="item">Revenue: {{report.revenue}}</span>
+</div>
+
+<div class="content" [hidden]="!hide">
+    <h3>We can't found any records!</h3>
+</div>
+
+<div class="content" *ngFor="let bill of billArray">
+    <div class="align-items-start"> 
+        <label for= "name">Name: </label>
+        <span class="item" id="name">{{bill.name}} |</span>
+        <label for= "number">Number: </label>
+        <span class="item" id = "number" style="margin-left: 20px;">{{bill.number}}</span>
+    </div><hr>
+    <div>  
+        <label for= "time">Date: </label> <span class="item">{{bill.timestamp | date:'medium'}}</span>
+        <span class="item">Bill No.: {{bill.billNo}} </span>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-6">Item</div>
+        <div class="col-2">Qty.</div>
+        <div class="col-2">Price</div>
+        <div class="col-2">Amount</div>
+    </div>
+    <hr>
+    <div class="row" *ngFor="let item of bill.itemlist">
+        <div class="col-6" style="max-lines: 1; ">{{item.name}}</div>
+        <div class="col-2">{{item.count}}</div>
+        <div class="col-2">{{item.price}}</div>
+        <div class="col-2">{{item.count*item.price}}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">Total Qty.: {{bill.itemscount}}</div>
+        <div class="col" >Sub Total: {{bill.totalPay}} </div>
+    </div>
+</div>
