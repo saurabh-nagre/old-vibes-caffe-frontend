@@ -20,18 +20,23 @@ div{
     padding: 0px;
 }
 .bg-header{
-    padding: 0px;
-    background-repeat: no-repeat;
-    height: 100px;
-    background-position-x: center;
-    background-position-y: center;
-    background-position: 20%;
-    background-size:cover;
-    color: yellow;
+        height: 200px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        padding-top: 10px;
+        background-color: aquamarine;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
 }
 #category-text{
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
     font-size: medium;
+}
+
+#category-img{
+   width: 100%;
 }
 .list1{
     background-color: lightpink;

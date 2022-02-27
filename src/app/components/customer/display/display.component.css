@@ -1,36 +1,98 @@
-@media screen and (min-width:400px) {
-    
+
     .item{
         width: 100%;
-        text-align-last: end;
+    }
+    .name{
+        width: 70%;
+        display: inline;
     }
     .price{
-        margin-left: 100px;
+        float: right;
+        text-align: center;
+        width: 30%;
+        margin-left: 50px;
     }
-    .bg-header{
-        height: 110px;
+    .price,.name{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        font-size: 4vw;
+    }
+    
+    #header-name{
+        font-size: 6vw;
+        margin-left: 5px;
+    }
+    #header-button{
+        font-size: 3vw;
     }
     #category-text{
+        text-align: center;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        font-size: medium;
+    }
+
+    #category-img{
+       width: 100%;
+       height: 125px;
+    }
+    .bg-header{
+        margin-bottom: 5px;
+        cursor: pointer;
+        padding-top: 10px;
+        background-color: aquamarine;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        /* background-repeat: no-repeat;
+        background-position-x:center;
+        background-position-y:center;
+        background-size:cover; */
+    }
+
+@media screen and (min-width:500px){
+    .price{
+        margin-right: 10px;
+    }
+    .name,.price{
+        font-size: medium;
+    }
+    #header-name{
+        font-size: large;
+        margin-left: 100px;
+        font-weight: 500;
+    }
+    #header-button{
         font-size: small;
     }
+    #category-text{
+        font-size: medium;
+    }
 }
-@media screen and (min-width:900px) {
+
+@media screen and (min-width:800px) {
     .item{
         width: 50%;
         display: inline;
         text-align-last: right;
     }
-    .name{
-        margin: 100px;
-    }
+    
     .price{
         margin: 100px;
+        float: none;
     }
     .bg-header{
-        height: 150px;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+    #category-img{
+        height: 81%;
     }
     #category-text{
-        font-size: larger;
+        height: 19%;
+    }
+    .name,.price {
+        font-family:cursive;
+        font-size: small;
     }
 }
 
@@ -44,14 +106,11 @@
     height: 47px;
 }
 
-h6{
+#header-name{
     font-family:cursive;
-    font-size: large;
     color: whitesmoke;
     float:left;
-    margin: 5px;
-    margin-top: 7px;
-    margin-left: 100px;
+    margin-top: 9px;
     vertical-align:middle;
 }
 
@@ -67,7 +126,6 @@ h6{
     border-style: solid;
     color: white;
     z-index: 1;
-    font-size: smaller;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
@@ -78,25 +136,15 @@ h6{
     border-color: black;
     text-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.bg-header{
-    padding: 0px;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-position: 20%;
-    background-size:cover;
-    color: yellow;
-}
+
 .bg-header:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-#category-text{
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
+
 
 .item{
     margin-top: 10px;
-    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .list1{
@@ -115,7 +163,7 @@ h6{
     background-color: lightskyblue;
 }
 .menu{
-    margin: 30px;
+    margin: 20px;
 }
 
 .list1,.list2,.list3,.list4,.list5{
@@ -123,7 +171,3 @@ h6{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.name,.price {
-    font-family:cursive;
-    font-size: small;
-}

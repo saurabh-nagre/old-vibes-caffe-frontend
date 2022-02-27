@@ -1,13 +1,14 @@
 <div class="main">
     <div class="header">
-        <h6>Old Vibes Cafe</h6>
+        <h6 id = "header-name">Old Vibes Cafe</h6>
         <button id = "header-button" [routerLink]="'login'" [replaceUrl]="true">Admin Login</button>
     </div>
     <div class="menu">
-        <div class="row">
-            <div class="col categories"  *ngFor="let category of categories" >
-                <div class = "bg-header" [style.background-image]="category.imageurl" (click)="changeList(category.name)" >
-                    <h5 id ="category-text" style="text-align: center;">{{category.name}}</h5>
+        <div class="row ">
+            <div class="col"  *ngFor="let category of categories" >
+                <div class ="bg-header" (click)="changeList(category.name)" >
+                    <h6 id ="category-text">{{category.name}}</h6>
+                    <img id="category-img" [src]="category.imageurl" alt="img">
                 </div>
             </div>
         </div>

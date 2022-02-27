@@ -1,8 +1,12 @@
+.sidenav{
+    padding-bottom: 20px;
+}
 @media screen and (min-width:400px) {
     .sidenav{
         width: 100%;
         margin-top: 0px;
         background-color: black;
+        
     }
     img {
         width: 80%;

@@ -13,7 +13,7 @@ export class CartService {
   private number:number = 0
   
   pushToCart(item:{name:string,price:number,count:number}){
-    if(item.count==0){
+    if(item.count==0 || item.count==undefined || item.count==null){
       this.cartMap.delete(item.name);
     }
     else{

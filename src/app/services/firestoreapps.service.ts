@@ -6,11 +6,11 @@ import { LoginService } from './auth-services/login.service';
 })
 export class FirestoreappsService {
 
-  categories = [{name:"Breads & Omelettes",imageurl:"url('/assets/img1.jpg')"},
-                {name:"Pizza\'s & Pasta\'s'",imageurl:"url('/assets/img2.jpg')"},
-                {name:'Burgers & Fries',imageurl:"url('/assets/img3.jpg')"},
-                {name:'Tea Coffee Mocktails',imageurl:"url('/assets/img4.jpg')"},
-                {name:'Smoothies Desserts',imageurl:"url('/assets/img5.jpg')"}];
+  categories = [{name:"Breads & Omelettes",imageurl:"/assets/img1.jpg"},
+                {name:"Pizza\'s & Pasta\'s",imageurl:"/assets/img2.jpg"},
+                {name:'Burgers & Fries',imageurl:"/assets/img3.jpg"},
+                {name:'TeaCoffee Mocktails',imageurl:"/assets/img4.jpg"},
+                {name:'Smoothies & Desserts',imageurl:"/assets/img5.jpg"}];
 
   private app:any
   private db:any
