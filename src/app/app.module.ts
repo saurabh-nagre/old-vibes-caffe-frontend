@@ -12,7 +12,6 @@ import { PrintComponent } from './components/print/print/print.component';
 import {  NgxPrintModule } from 'ngx-print';
 import { DisplayComponent } from './components/customer/display/display.component';
 import { MenuComponent } from './components/dashboard/menu/menu.component';
-import { DiscountsComponent } from './components/dashboard/discounts/discounts.component';
 import { SalesComponent } from './components/dashboard/sales/sales.component';
 import { DetailsComponent } from './components/dashboard/details/details.component';
 
@@ -25,7 +24,6 @@ import { DetailsComponent } from './components/dashboard/details/details.compone
     PrintComponent,
     DisplayComponent,
     MenuComponent,
-    DiscountsComponent,
     SalesComponent,
     DetailsComponent
   ],

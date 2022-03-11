@@ -27,7 +27,7 @@ export class FirestoreappsService {
 
   async getBreadsOmelettes() {
   
-      var requestedData:{id:string,name:string,price:number,category:string}[] = []
+      var requestedData:{id:string,name:string,discount:number,price:number,category:string,subcategory:string}[] = []
       try{
         const querySnapshot = await getDocs(collection(this.db, "FoodCategories/categories/breadsomelettes"));
         querySnapshot.forEach((doc) => {
@@ -35,9 +35,15 @@ export class FirestoreappsService {
             id:doc.id,
             name:doc.data()['name'],
             price:doc.data()['price'],
-            category:'breadsomelettes'
+            discount:doc.data()['discount'],
+            category:'breadsomelettes',
+            subcategory:doc.data()['subcategory']
           };
-          requestedData.push(obj)
+          if(!obj.discount){
+            obj.discount = obj.price;
+          }
+          if(obj.id!='subcategory')
+            requestedData.push(obj);
         });
       }
       catch(e){
@@ -47,7 +53,7 @@ export class FirestoreappsService {
   }
 
   async getPizzasPastas(){
-    var requestedData:{id:string,name:string,price:number,category:string}[] = []
+    var requestedData:{id:string,name:string,discount:number,price:number,category:string,subcategory:string}[] = []
     try{
       const querySnapshot = await getDocs(collection(this.db, "FoodCategories/categories/pizzaspastas"));
       querySnapshot.forEach((doc) => {
@@ -55,9 +61,15 @@ export class FirestoreappsService {
           id:doc.id,
           name:doc.data()['name'],
           price:doc.data()['price'],
-          category:'pizzaspastas'
+          discount:doc.data()['discount'],
+          category:'pizzaspastas',
+          subcategory:doc.data()['subcategory']
         };
-        requestedData.push(obj);
+        if(!obj.discount){
+          obj.discount = obj.price;
+        }
+        if(obj.id!='subcategory')
+          requestedData.push(obj);
       });
     }
     catch(e){
@@ -67,7 +79,7 @@ export class FirestoreappsService {
   }
 
   async getBurgersFries(){
-    var requestedData:{id:string,name:string,price:number,category:string}[]  =[]
+    var requestedData:{id:string,name:string,discount:number,price:number,category:string,subcategory:string}[]  =[]
     try{
       const querySnapshot = await getDocs(collection(this.db, "FoodCategories/categories/bergersfries"));
       querySnapshot.forEach((doc) => {
@@ -75,9 +87,15 @@ export class FirestoreappsService {
           id:doc.id,
           name:doc.data()['name'],
           price:doc.data()['price'],
-          category:'bergersfries'
+          discount:doc.data()['discount'],
+          category:'bergersfries',
+          subcategory:doc.data()['subcategory']
         };
-        requestedData.push(obj);
+        if(!obj.discount){
+          obj.discount = obj.price;
+        }
+        if(obj.id!='subcategory')
+          requestedData.push(obj);
       });
     }
     catch(e){
@@ -87,7 +105,7 @@ export class FirestoreappsService {
   }
 
   async getTeasCoffeesMocktails(){
-    var requestedData:{id:string,name:string,price:number,category:string}[] = []
+    var requestedData:{id:string,name:string,price:number,discount:number,category:string,subcategory:string}[] = []
     try{
       const querySnapshot = await getDocs(collection(this.db, "FoodCategories/categories/teascoffeesmocktails"));
       querySnapshot.forEach((doc) => {
@@ -95,9 +113,15 @@ export class FirestoreappsService {
           id:doc.id,
           name:doc.data()['name'],
           price:doc.data()['price'],
-          category:'teascoffeesmocktails'
+          discount:doc.data()['discount'],
+          category:'teascoffeesmocktails',
+          subcategory:doc.data()['subcategory']
         };
-        requestedData.push(obj);
+        if(!obj.discount){
+          obj.discount = obj.price;
+        }
+        if(obj.id!='subcategory')
+          requestedData.push(obj);
       });
     }
     catch(e){
@@ -107,7 +131,7 @@ export class FirestoreappsService {
   }
 
   async getSmoothiesDesserts(){
-    var requestedData:{id:string,name:string,price:number,category:string}[] = []
+    var requestedData:{id:string,name:string,price:number,discount:number,category:string,subcategory:string}[] = []
     try{
       const querySnapshot = await getDocs(collection(this.db, "FoodCategories/categories/smoothiesdesserts"));
       querySnapshot.forEach((doc) => {
@@ -115,9 +139,15 @@ export class FirestoreappsService {
           id:doc.id,
           name:doc.data()['name'],
           price:doc.data()['price'],
-          category:'smoothiesdesserts'
+          discount:doc.data()['discount'],
+          category:'smoothiesdesserts',
+          subcategory:doc.data()['subcategory']
         };
-        requestedData.push(obj);
+        if(!obj.discount){
+          obj.discount = obj.price;
+        }
+        if(obj.id!='subcategory')
+          requestedData.push(obj);
       });
     }
     catch(e){
@@ -126,13 +156,15 @@ export class FirestoreappsService {
     return requestedData;
   }
 
-  async addItemtoBreadsOmellettes(Name:string,Price:number){
+  async addItemtoBreadsOmellettes(Name:string,Price:number,category:string){
     try{
       const collectionref = collection(this.db,'FoodCategories/categories/breadsomelettes');
       await addDoc(collectionref,{
         name:Name,
         price:Price,
-        category:this.categories[0]
+        discount:Price,
+        category:'breadsomelettes',
+        subcategory:category
       })
     }
     catch(e){
@@ -140,52 +172,60 @@ export class FirestoreappsService {
     }
   }
   
-  async addItemtoPizzasPastas(Name:string,Price:number){
+  async addItemtoPizzasPastas(Name:string,Price:number,category:string){
     try{
       const collectionref = collection(this.db,'FoodCategories/categories/pizzaspastas');
       await addDoc(collectionref,{
         name:Name,
         price:Price,
-        category:this.categories[1]
+        discount:Price,
+        subcategory:category,
+        category:'pizzaspastas'
       })
     }
     catch(e){
       console.log(e)
     }
   }
-  async addItemtoBergersFries(Name:string,Price:number){
+  async addItemtoBergersFries(Name:string,Price:number,category:String){
     try{
       const collectionref = collection(this.db,'FoodCategories/categories/bergersfries');
       await addDoc(collectionref,{
         name:Name,
         price:Price,
-        category:this.categories[2]
+        discount:Price,
+        subcategory:category,
+        category:'bergersfries'
       })
     }
     catch(e){
       console.log(e)
     }
   }
-  async addItemtoTeasCoffeesMocktails(Name:string,Price:number){
+  async addItemtoTeasCoffeesMocktails(Name:string,Price:number,category:String){
     try{
       const collectionref = collection(this.db,'FoodCategories/categories/teascoffeesmocktails');
       await addDoc(collectionref,{
         name:Name,
         price:Price,
-        category:this.categories[3]
+        discount:Price,
+        subcategory:category,
+        category:'teascoffeesmocktails'
       })
     }
     catch(e){
       console.log(e)
     }
   }
-  async addItemtoSmoothiesDesserts(Name:string,Price:number){
+  async addItemtoSmoothiesDesserts(Name:string,Price:number,category:String){
     try{
       const collectionref = collection(this.db,'FoodCategories/categories/smoothiesdesserts');
       await addDoc(collectionref,{
         name:Name,
         price:Price,
-        category:this.categories[4]
+        discount:Price,
+        subcategory:category,
+        category:'smoothiesdesserts'
       })
     }
     catch(e){

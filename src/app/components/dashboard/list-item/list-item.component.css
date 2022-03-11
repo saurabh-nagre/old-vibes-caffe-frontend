@@ -2,7 +2,9 @@
     font-size: 0.95em;
     font-family: Georgia, 'Times New Roman', Times, sans-serif;
 }
-
+span{
+    margin-inline: 3px;
+}
 button{
     size: 40px;
     margin: 5px;

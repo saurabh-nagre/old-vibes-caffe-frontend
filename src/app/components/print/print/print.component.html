@@ -37,19 +37,24 @@
         <div class="row" *ngFor="let item of items">
             <div class="col-6" style="max-lines: 1; ">{{item.name}}</div>
             <div class="col-2">{{item.count}}</div>
-            <div class="col-2">{{item.price}}</div>
-            <div class="col-2">{{item.count*item.price}}</div>
+            <div class="col-2">
+                <span [style]="(item.discount<item.price)?'text-decoration: line-through;margin-right:5px;':''">{{item.price}}</span>
+                <span [hidden]="!(item.discount<item.price)">{{item.discount}}</span>
+            </div>
+            <div class="col-2">{{item.count*item.discount}}</div>
         </div>
 
         <hr>
         <div class="row">
             <div class="col">Total Qty.: {{totalQuantity}}</div>
-            <div class="col" >Sub Total: {{grandTotal}} </div>
+            <div class="col" >Sub Total: {{grandTotal|currency:'INR'}} </div>
         </div>
         <hr>
-        <div style="text-align:right;"><b>Grand Total: {{grandTotal}}</b></div>
+        <div style="text-align:right;"><b>Grand Total: {{grandTotal|currency:'INR'}}</b></div>
+        <h6 [hidden]="saving==0">
+            Congratulations, You have saved {{saving |currency:'INR'}}
+        </h6>
         <hr>
-
         <h6>!!!Thank You Visit Again!!!</h6>
     </div>
 

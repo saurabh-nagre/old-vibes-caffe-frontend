@@ -2,9 +2,19 @@
     <span id="delete-item" [hidden]="!isChecked || !isEditable" (click)="deleteItem()">&times;</span>
     <span class="itemname" [hidden]="isEditable && isChecked">{{item.name}}</span>
     <input type="text" [hidden]="!isChecked || !isEditable" [(ngModel)] = "myitemName"><br>
-    <input type = "checkbox" class="itemcheckbox" [checked] = "isChecked" (change)= "makeChecked()">
+    <input type = "checkbox" class="itemcheckbox"  [checked] = "isChecked" (change)= "makeChecked()">
     <input type="number" min = '0' [disabled]="!isChecked" class="iteminput" [hidden]="isChecked && isEditable" [(ngModel)] = "myitemCount" (change)="changeCount()"/>
-    <span [hidden]="isChecked && isEditable">{{item.price|currency:'INR'}}</span>
-    <input type="number" min="0" class="iteminput" [hidden]="!isChecked || !isEditable" [(ngModel)] = "myitemPrice"/>
-    <button class="" [hidden]="!isChecked || !isEditable" (click)="saveChange()" >Save</button>
+    <span [hidden]="isChecked && isEditable" [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+    <span [hidden]="!(item.discount<item.price) || (isChecked && isEditable)">{{item.discount|currency:'INR'}}</span>
+
+    <!-- For Edit mode --><br>
+    <label for = "original-price" style="width:65%; " [hidden]="!isChecked || !isEditable">Original Price: </label>
+    <input type="number" min="0"  style="width:30%;" id ="origin-price" class="iteminput" [hidden]="!isChecked || !isEditable" [(ngModel)] = "myitemPrice"/>
+    <label for = "discounted-price"  style="width:65%;" [hidden]="!isChecked || !isEditable">Discounted Price: </label>
+    <input type="number" min="0" [max]="myitemPrice" style="width:30%;" id ="origin-price" class="iteminput" [hidden]="!isChecked || !isEditable" [(ngModel)] = "myitemDiscount"/>
+    <label for="type-list1" style="width: 50%;"  [hidden]="!isChecked || !isEditable" >Item Type </label>
+    <select id = "type-list1" style="width: 50%;"  name = "type-list1"  [hidden]="!isChecked || !isEditable" (change)="changeCategory($event)">
+        <option *ngFor="let option of subcategories" [selected]="option==item.subcategory" value="option">{{option}}</option>
+    </select>
+    <button [hidden]="!isChecked || !isEditable" (click)="saveChange()">Save</button>
 </div>

@@ -16,11 +16,11 @@ export class MenuComponent implements OnInit {
   categories!:any
   tableNo = 0
   tableCount = 1
-  breadomelette:{id:string,name:string,price:number,category: string;}[] = []
-  pizzapasta:{id:string,name:string,price:number,category: string;}[] = []
-  burgerfries:{id:string,name:string,price:number,category: string;}[] = []
-  teacoffeemocktails:{id:string,name:string,price:number,category: string;}[] = []
-  smoothiesdesserts:{id:string,name:string,price:number,category: string;}[] = []
+  breadomelette:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  pizzapasta:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  burgerfries:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  teacoffeemocktails:{id:string,name:string,discount:number,price:number,category: string,subcategory:string}[] = []
+  smoothiesdesserts:{id:string,name:string,discount:number,price:number,category: string,subcategory:string}[] = []
   constructor(private router:Router,
             private firestoreservice:FirestoreappsService,
             private loginService:LoginService,
@@ -75,7 +75,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  camparator(a:{id:string,name:string,price:number,category:string},b:{id:string,name:string,price:number,category:string}){
+  camparator(a:{id:string,name:string,price:number,category:string,subcategory:string},b:{id:string,name:string,price:number,category:string,subcategory:string}){
       return a.price>b.price?1:-1;
   }
   isHidden:boolean = true;
@@ -140,11 +140,25 @@ export class MenuComponent implements OnInit {
   showAddType1(){
     this.isAddType1Hidden = false
   }
+
+  type1Category = ''
+  changeCategory1(event:any){
+    switch(event.target.options.selectedIndex){
+      case 1:
+        this.type1Category = event.target.options[1].value;
+        break;
+      case 2:
+        this.type1Category = event.target.options[2].value;
+        break;
+      default:
+        this.type1Category = event.target.options[0].value; 
+    }
+  }
   submitAddType1(){
     this.type1Name = this.type1Name.toUpperCase();
     const shouldadd = confirm("Do you want to add '"+this.type1Name +"' with price "+"Rs."+this.type1Price+" to '"+this.categories[0]+"'?");
     if(shouldadd){
-      this.firestoreservice.addItemtoBreadsOmellettes(this.type1Name,this.type1Price);
+      this.firestoreservice.addItemtoBreadsOmellettes(this.type1Name,this.type1Price,this.type1Category);
       this.isAddType1Hidden = true
     }
     else 
@@ -165,11 +179,24 @@ export class MenuComponent implements OnInit {
   showAddType2(){
     this.isAddType2Hidden = false
   }
+  type2Category = ''
+  changeCategory2(event:any){
+    switch(event.target.options.selectedIndex){
+      case 1:
+        this.type2Category = event.target.options[1].value;
+        break;
+      case 2:
+        this.type2Category = event.target.options[2].value;
+        break;
+      default:
+        this.type2Category = event.target.options[0].value; 
+    }
+  }
   submitAddType2(){
     this.type2Name = this.type2Name.toUpperCase();
     const shouldadd = confirm("Do you want to add '"+this.type2Name +"' with price "+"Rs."+this.type2Price+" to '"+this.categories[1]+"'?");
     if(shouldadd){
-      this.firestoreservice.addItemtoPizzasPastas(this.type2Name,this.type2Price);
+      this.firestoreservice.addItemtoPizzasPastas(this.type2Name,this.type2Price,this.type2Category);
       this.isAddType2Hidden = true
     }
     else 
@@ -190,11 +217,24 @@ export class MenuComponent implements OnInit {
   showAddType3(){
     this.isAddType3Hidden = false
   }
+  type3Category = ''
+  changeCategory3(event:any){
+    switch(event.target.options.selectedIndex){
+      case 1:
+        this.type3Category = event.target.options[1].value;
+        break;
+      case 2:
+        this.type3Category = event.target.options[2].value;
+        break;
+      default:
+        this.type3Category = event.target.options[0].value; 
+    }
+  }
   submitAddType3(){
     this.type3Name = this.type3Name.toUpperCase();
     const shouldadd = confirm("Do you want to add '"+this.type3Name +"' with price "+"Rs."+this.type3Price+" to '"+this.categories[2]+"'?");
     if(shouldadd){
-      this.firestoreservice.addItemtoBergersFries(this.type3Name,this.type3Price);
+      this.firestoreservice.addItemtoBergersFries(this.type3Name,this.type3Price,this.type3Category);
       this.isAddType3Hidden = true
     }
     else 
@@ -213,11 +253,27 @@ export class MenuComponent implements OnInit {
   showAddType4(){
     this.isAddType4Hidden = false
   }
+  type4Category = ''
+  changeCategory4(event:any){
+    switch(event.target.options.selectedIndex){
+      case 1:
+        this.type4Category = event.target.options[1].value;
+        break;
+      case 2:
+        this.type4Category = event.target.options[2].value;
+        break;
+      case 3:
+        this.type4Category = event.target.options[3].value;
+        break;
+      default:
+        this.type4Category = event.target.options[0].value; 
+    }
+  }
   submitAddType4(){
     this.type4Name = this.type4Name.toUpperCase();
     const shouldadd = confirm("Do you want to add '"+this.type4Name +"' with price "+"Rs."+this.type4Price+" to '"+this.categories[3]+"'?");
     if(shouldadd){
-      this.firestoreservice.addItemtoTeasCoffeesMocktails(this.type4Name,this.type4Price);
+      this.firestoreservice.addItemtoTeasCoffeesMocktails(this.type4Name,this.type4Price,this.type4Category);
       this.isAddType4Hidden = true
     }
     else 
@@ -234,14 +290,29 @@ export class MenuComponent implements OnInit {
   isAddType5Hidden = true;
   type5Name = ''
   type5Price = 0
+  
+
   showAddType5(){
     this.isAddType5Hidden = false
   }
+  type5Category = ''
+  changeCategory5(event:any){
+    switch(event.target.options.selectedIndex){
+      case 1:
+        this.type5Category = event.target.options[1].value;
+        break;
+      case 2:
+        this.type5Category = event.target.options[2].value;
+        break;
+      default:
+        this.type5Category = event.target.options[0].value; 
+    }
+  }
   submitAddType5(){
     this.type5Name = this.type5Name.toUpperCase();
-    const shouldadd = confirm("Do you want to add '"+this.type5Name +"' with price "+"Rs."+this.type5Price+" to '"+this.categories[4]+"'?");
+    const shouldadd = confirm("Do you want to add '"+this.type5Name +"' with price "+"Rs."+this.type5Price+" as "+this.type5Category+" to '"+this.categories[4]+"'?");
     if(shouldadd){
-      this.firestoreservice.addItemtoSmoothiesDesserts(this.type5Name,this.type5Price);
+      this.firestoreservice.addItemtoSmoothiesDesserts(this.type5Name,this.type5Price,this.type5Category);
       this.isAddType5Hidden = true
     }
     else 

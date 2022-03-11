@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, subscribeOn } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +7,7 @@ export class CartService {
 
   constructor() { }
 
-  private tableArray:Array<Map<string,{name:string,price:number,count:number}>> = []
+  private tableArray:Array<Map<string,{name:string,price:number,discount:number,count:number}>> = []
 
   private name:string = ""
   private number:number = 0
@@ -29,9 +28,9 @@ export class CartService {
 
 
   
-  pushToCart(tableno:number,item:{name:string,price:number,count:number}){
+  pushToCart(tableno:number,item:{name:string,discount:number,price:number,count:number}){
 
-    if(item.count==0 || item.count==undefined || item.count==null){
+    if(!item.count){
       this.tableArray[tableno].delete(item.name);
     }
     else{
@@ -46,7 +45,6 @@ export class CartService {
 
   getCount(tableno:number,str:string){
     if(this.tableArray[tableno].has(str)){
-      console.log("mycount: "+this.tableArray[tableno].get(str)?.count);
       return this.tableArray[tableno].get(str)?.count;
     }
     else return 0;

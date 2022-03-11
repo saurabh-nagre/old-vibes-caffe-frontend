@@ -30,7 +30,7 @@ export class FirestoreUploadService {
         throw "can't add bill doc";
       });
       
-      await addDoc(collection(this.db,'customers'),
+      await setDoc(doc(this.db,'customers/'+bill.name),
       {
         name:bill['name'],
         number:bill['number']

@@ -22,76 +22,146 @@
 
     <div class="row">
         <div class="col list1">
+            <div class="row"  *ngFor="let listitem of breadomelette" >
+                <app-list-item *ngIf="listitem.subcategory=='Bread'" [item]="listitem" (deleteItemEvent)="deleteList1($event)" [tableno] = "tableNo" [isEditable] = "!isHidden"></app-list-item>
+            </div>
             <div class="row"  *ngFor="let listitem of breadomelette">
-                <app-list-item [item]="listitem" (deleteItemEvent)="deleteList1($event)" [tableno] = "tableNo" [isEditable] = "!isHidden"></app-list-item>
-                <br>
+                <app-list-item *ngIf="listitem.subcategory=='Omlette'" [item]="listitem" (deleteItemEvent)="deleteList1($event)" [tableno] = "tableNo" [isEditable] = "!isHidden"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of breadomelette">
+                <app-list-item *ngIf="listitem.subcategory!='Bread' && listitem.subcategory!='Omlette'" [item]="listitem" (deleteItemEvent)="deleteList1($event)" [tableno] = "tableNo" [isEditable] = "!isHidden"></app-list-item>
             </div>
             
             <div class="new-item-add">
-                <button class="btn btn-sm btn-primary" (click)="showAddType1()" [hidden]="!isAddType1Hidden">Add New Item</button><br>
+            <button class="btn btn-sm btn-primary" (click)="showAddType1()" [hidden]="!isAddType1Hidden">Add New Item</button><br>
+            <form (ngSubmit)="submitAddType1()">
                 <label for = "type1name" [hidden]="isAddType1Hidden">Food Item Name</label>
-                <input type="text" id = "type1name" [hidden]="isAddType1Hidden" [(ngModel)] ='type1Name'/><br>
+                <input type="text" name = "type1name" id = "type1name" [hidden]="isAddType1Hidden" [(ngModel)] ='type1Name'/><br>
                 <label for="type1price" [hidden]="isAddType1Hidden">Food Item Price</label>
-                <input type="number" min="0" id = "type1price" [hidden]="isAddType1Hidden" [(ngModel)] = 'type1Price'/><br>
-                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType1Hidden" (click)="submitAddType1()">
+                <input type="number" min="0" name = "type1price" id = "type1price" [hidden]="isAddType1Hidden" [(ngModel)] = 'type1Price'/><br>
+                <label for="type-list1" [hidden]="isAddType1Hidden" >Item Type </label>
+                <select id = "type-list1" name = "type-list1"  [hidden]="isAddType1Hidden" (change)="changeCategory1($event)">
+                    <option value="none">Select Category</option>
+                    <option value="Bread">Bread</option>
+                    <option value="Omlette">Omlette</option>
+                </select><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType1Hidden">
+            </form>
             </div>
 
         </div>
         <div class="col list2">
             <div class="row"  *ngFor="let listitem of pizzapasta">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList2($event)"></app-list-item>
-                <br>
+                <app-list-item *ngIf="listitem.subcategory=='Pizza'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList2($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of pizzapasta">
+                <app-list-item *ngIf="listitem.subcategory=='Pasta'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList2($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of pizzapasta">
+                <app-list-item *ngIf="listitem.subcategory!='Pizza' && listitem.subcategory!='Pasta'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList2($event)"></app-list-item>
             </div>
 
             <div class="new-item-add">
                 <button class="btn btn-sm btn-primary" (click)="showAddType2()" [hidden]="!isAddType2Hidden">Add New Item</button><br>
+            <form (ngSubmit)="submitAddType2()">    
                 <label for = "type2name" [hidden]="isAddType2Hidden">Food Item Name</label>
-                <input type="text" id = "type2name" [hidden]="isAddType2Hidden" [(ngModel)] ='type2Name'/><br>
+                <input type="text" id = "type2name" name = "type2name" [hidden]="isAddType2Hidden" [(ngModel)] ='type2Name'/><br>
                 <label for="type2price" [hidden]="isAddType2Hidden">Food Item Price</label>
-                <input type="number" min="0" id = "type2price" [hidden]="isAddType2Hidden" [(ngModel)] = 'type2Price'/><br>
-                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType2Hidden" (click)="submitAddType2()">
+                <input type="number" min="0" id = "type2price" name= "type2price" [hidden]="isAddType2Hidden" [(ngModel)] = 'type2Price'/><br>
+                <label for="type-list2" [hidden]="isAddType2Hidden" >Item Type </label>
+                <select id = "type-list2" name = "type-list2"  [hidden]="isAddType2Hidden" (change)="changeCategory2($event)">
+                    <option value="none">Select Category</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Pasta">Pasta</option>
+                </select><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType2Hidden" >
+            </form>
             </div> 
         </div>
         <div class="col list3">
             <div class="row"  *ngFor="let listitem of burgerfries">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList3($event)"></app-list-item>
-                <br>
+                <app-list-item *ngIf="listitem.subcategory=='Burger'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList3($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of burgerfries">
+                <app-list-item *ngIf="listitem.subcategory=='Fries'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList3($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of burgerfries">
+                <app-list-item *ngIf="listitem.subcategory!='Burger' && listitem.subcategory!='Fries'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList3($event)"></app-list-item>
             </div>
             <div class="new-item-add">
                 <button class="btn btn-sm btn-primary" (click)="showAddType3()" [hidden]="!isAddType3Hidden">Add New Item</button><br>
+            <form (ngSubmit)="submitAddType3()">
                 <label for = "type3name" [hidden]="isAddType3Hidden">Food Item Name</label>
-                <input type="text" id = "type3name" [hidden]="isAddType3Hidden" [(ngModel)] ='type3Name'/><br>
+                <input type="text" id = "type3name" name = "type3name" [hidden]="isAddType3Hidden" [(ngModel)] ='type3Name'/><br>
                 <label for="type3price" [hidden]="isAddType3Hidden">Food Item Price</label>
-                <input type="number" min="0" id = "type3price" [hidden]="isAddType3Hidden" [(ngModel)] = 'type3Price'/><br>
-                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType3Hidden" (click)="submitAddType3()">
+                <input type="number" min="0" name = "type3price"  id = "type3price" [hidden]="isAddType3Hidden" [(ngModel)] = 'type3Price'/><br>
+                <label for="type-list3" [hidden]="isAddType3Hidden" >Item Type </label>
+                <select id = "type-list3" name = "type-list3"  [hidden]="isAddType3Hidden" (change)="changeCategory3($event)">
+                    <option value="none">Select Category</option>
+                    <option value="Burger">Burger</option>
+                    <option value="Fries">Fries</option>
+                </select><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType3Hidden">
+            </form>
             </div> 
         </div>
         <div class="col list4">
             <div class="row"  *ngFor="let listitem of teacoffeemocktails">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList4($event)"></app-list-item>
-                <br>
+                <app-list-item *ngIf="listitem.subcategory=='Tea'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList4($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of teacoffeemocktails">
+                <app-list-item *ngIf="listitem.subcategory=='Coffee'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList4($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of teacoffeemocktails">
+                <app-list-item *ngIf="listitem.subcategory=='Mocktail'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList4($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of teacoffeemocktails">
+                <app-list-item *ngIf="listitem.subcategory!='Tea' && listitem.subcategory!='Coffee' && listitem.subcategory!='Mocktail'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList4($event)"></app-list-item>
             </div>
             <div class="new-item-add">
                 <button class="btn btn-sm btn-primary" (click)="showAddType4()" [hidden]="!isAddType4Hidden">Add New Item</button><br>
+            <form (ngSubmit)="submitAddType4()">
                 <label for = "type4name" [hidden]="isAddType4Hidden">Food Item Name</label>
-                <input type="text" id = "type4name" [hidden]="isAddType4Hidden" [(ngModel)] ='type4Name'/><br>
+                <input type="text" name = "type4name" id = "type4name" [hidden]="isAddType4Hidden" [(ngModel)] ='type4Name'/><br>
                 <label for="type4price" [hidden]="isAddType4Hidden">Food Item Price</label>
-                <input type="number" min="0" id = "type4price" [hidden]="isAddType4Hidden" [(ngModel)] = 'type4Price'/><br>
-                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType4Hidden" (click)="submitAddType4()">
+                <input type="number" min="0" name = "type4price" id = "type4price" [hidden]="isAddType4Hidden" [(ngModel)] = 'type4Price'/><br>
+                <label for="type-list4" [hidden]="isAddType4Hidden" >Item Type </label>
+                <select id = "type-list4" name = "type-list4"  [hidden]="isAddType4Hidden" (change)="changeCategory4($event)">
+                    <option value="none">Select Category</option>
+                    <option value="Tea">Tea</option>
+                    <option value="Coffee">Coffee</option>
+                    <option value="Mocktail">Mocktail</option>
+                </select><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType4Hidden">
+            </form>
             </div> 
         </div>
         <div class="col list5">
             <div class="row"  *ngFor="let listitem of smoothiesdesserts">
-                <app-list-item [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList5($event)"></app-list-item>
-                <br>
+                <app-list-item *ngIf="listitem.subcategory=='Smoothie'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList5($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of smoothiesdesserts">
+                <app-list-item *ngIf="listitem.subcategory=='Dessert'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList5($event)"></app-list-item>
+            </div>
+            <div class="row"  *ngFor="let listitem of smoothiesdesserts">
+                <app-list-item *ngIf="listitem.subcategory!='Smoothie' && listitem.subcategory!='Dessert' " [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList5($event)"></app-list-item>
             </div>
             <div class="new-item-add">
                 <button class="btn btn-sm btn-primary" (click)="showAddType5()" [hidden]="!isAddType5Hidden">Add New Item</button><br>
+            <form (ngSubmit)="submitAddType5()">
                 <label for = "type5name" [hidden]="isAddType5Hidden">Food Item Name</label>
-                <input type="text" id = "type5name" [hidden]="isAddType5Hidden" [(ngModel)] ='type5Name'/><br>
+                <input type="text" id = "type5name" name= "type5name" [hidden]="isAddType5Hidden" [(ngModel)] ='type5Name'/><br>
                 <label for="type5price" [hidden]="isAddType5Hidden">Food Item Price</label>
-                <input type="number" min="0" id = "type5price" [hidden]="isAddType5Hidden" [(ngModel)] = 'type5Price'/><br>
-                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType5Hidden" (click)="submitAddType5()">
+                <input type="number" min="0" id = "type5price" name = "type5price" [hidden]="isAddType5Hidden" [(ngModel)] = 'type5Price'/><br>
+                <label for="type-list5" [hidden]="isAddType5Hidden" >Item Type </label>
+                <select id = "type-list5" name = "type-list5"  [hidden]="isAddType5Hidden" (change)="changeCategory5($event)">
+                    <option value="none">Select Category</option>
+                    <option value="Smoothie">Smoothie</option>
+                    <option value="Dessert">Dessert</option>
+                </select><br>
+                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType5Hidden">
+            </form>
+                
             </div> 
         </div>
     </div>

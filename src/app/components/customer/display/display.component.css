@@ -1,16 +1,16 @@
-
     .item{
         width: 100%;
     }
     .name{
-        width: 70%;
-        display: inline;
+        float: left;
+        width: 65%;
+        text-align: end;
     }
     .price{
-        float: right;
+        float: left;
         text-align: center;
         width: 30%;
-        margin-left: 50px;
+        margin-left: 5%;
     }
     .price,.name{
         font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -29,7 +29,7 @@
         text-align: center;
         font-family:Verdana, Geneva, Tahoma, sans-serif;
         font-weight: bold;
-        font-size: medium;
+        font-size: 4vw;
     }
 
     #category-img{
@@ -43,19 +43,9 @@
         background-color: aquamarine;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        /* background-repeat: no-repeat;
-        background-position-x:center;
-        background-position-y:center;
-        background-size:cover; */
     }
 
 @media screen and (min-width:500px){
-    .price{
-        margin-right: 10px;
-    }
-    .name,.price{
-        font-size: medium;
-    }
     #header-name{
         font-size: large;
         margin-left: 100px;
@@ -67,18 +57,23 @@
     #category-text{
         font-size: medium;
     }
+    .price,.name{
+        font-size: medium;
+    }
 }
 
 @media screen and (min-width:800px) {
     .item{
         width: 50%;
-        display: inline;
-        text-align-last: right;
+        margin-inline: 25%;
     }
-    
     .price{
-        margin: 100px;
-        float: none;
+        width: 25%;
+        text-align: center;
+    }
+    .name{
+        width: 70%;
+        text-align: end;
     }
     .bg-header{
         height: 200px;
@@ -137,16 +132,16 @@
     text-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.bg-header:hover{
+.clicked,.bg-header:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-
-
 .item{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
+.list{
+    padding-bottom: 50px;
+}
 .list1{
     background-color: lightpink;
 }

@@ -5,43 +5,218 @@
     </div>
     <div class="menu">
         <div class="row ">
-            <div class="col"  *ngFor="let category of categories" >
-                <div class ="bg-header" (click)="changeList(category.name)" >
+            <div class="col"  *ngFor="let category of categories;let i = index" >
+                <div [classList]="listHidden[i]?' bg-header':'clicked bg-header'" (click)="changeList(category.name)" >
                     <h6 id ="category-text">{{category.name}}</h6>
                     <img id="category-img" [src]="category.imageurl" alt="img">
                 </div>
             </div>
         </div>
 
-        <div class="row list1 list" [hidden]="list1hidden">
-            <div class="col-2 item"  *ngFor="let item of breadomelette">
-                <span class="name">{{item.name}}</span>
-                <span class="price">{{item.price|currency:'INR'}}</span>
-            </div>
+        <div class="row list1 list" [hidden]="listHidden[0]">
+                <div  *ngFor="let item of breadomelette">
+                    <div class="item" *ngIf="item.subcategory=='Bread'">
+                        <div class="name">
+                            <span >{{item.name}}</span>
+                        </div>
+                        <div class="price"> 
+                            <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                            <br>
+                            <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div  *ngFor="let item of breadomelette">
+                    <div class="item" *ngIf="item.subcategory=='Omelette'">
+                        <div class="name">
+                            <span >{{item.name}}</span>
+                        </div>
+                        <div class="price"> 
+                            <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                            <br>
+                            <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                        </div>
+                    </div>
+                </div><br><br>
+                <div  *ngFor="let item of breadomelette">
+                    <div class="item" *ngIf="item.subcategory!='Bread' && item.subcategory!='Omelette'">
+                        <div class="name">
+                            <span >{{item.name}}</span>
+                        </div>
+                        <div class="price"> 
+                            <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                            <br>
+                            <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                        </div>
+                    </div>
+                </div>
         </div>
         
-        <div class="row list2 list " [hidden]="list2hidden">
-            <div class="col-2 item"  *ngFor="let item of pizzapasta">
-                <span class="name">{{item.name}}</span>
-                <span class="price">{{item.price|currency:'INR'}}</span>
+        <div class="row list2 list " [hidden]="listHidden[1]">
+            <div *ngFor="let item of pizzapasta">
+                <div class="item" *ngIf="item.subcategory=='Pizza'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div *ngFor="let item of pizzapasta">
+                <div class="item" *ngIf="item.subcategory=='Pasta'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div  *ngFor="let item of pizzapasta">
+                <div class="item" *ngIf="item.subcategory!='Pizza' && item.subcategory!='Pasta'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row list3 list " [hidden]="list3hidden">
-            <div class="col-2 item"  *ngFor="let item of burgerfries">
-                <span class="name">{{item.name}}</span>
-                <span class="price">{{item.price|currency:'INR'}}</span>
+        <div class="row list3 list " [hidden]="listHidden[2]">
+            <div  *ngFor="let item of burgerfries">
+                <div class="item" *ngIf="item.subcategory=='Burger'">
+                    <div class="name">
+                        <span >{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div  *ngFor="let item of burgerfries">
+                <div class="item" *ngIf="item.subcategory=='Fries'">
+                    <div class="name">
+                        <span >{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div  *ngFor="let item of burgerfries">
+                <div class="item" *ngIf="item.subcategory!='Burger' && item.subcategory!='Fries'">
+                    <div class="name">
+                        <span >{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row list4 list " [hidden]="list4hidden">
-            <div class="col-2 item"  *ngFor="let item of teacoffeemocktails">
-                <span class="name">{{item.name}}</span>
-                <span class="price">{{item.price|currency:'INR'}}</span>
+        <div class="row list4 list " [hidden]="listHidden[3]">
+            <div  *ngFor="let item of teacoffeemocktails">
+                <div class="item" *ngIf="item.subcategory=='Tea'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div  *ngFor="let item of teacoffeemocktails">
+                <div class="item" *ngIf="item.subcategory=='Coffee'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div  *ngFor="let item of teacoffeemocktails">
+                <div class="item" *ngIf="item.subcategory=='Mocktail'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div  *ngFor="let item of teacoffeemocktails">
+                <div class="item" *ngIf="item.subcategory!='Mocktail' && item.subcategory!='Tea' && item.subcategory!='Coffee'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row list5 list " [hidden]="list5hidden">
-            <div class="col-2 item"  *ngFor="let item of smoothiesdesserts">
-                <span class="name">{{item.name}}</span>
-                <span class="price">{{item.price|currency:'INR'}}</span>
+        <div class="row list5 list " [hidden]="listHidden[4]">
+            <div  *ngFor="let item of smoothiesdesserts">
+                <div class="item" *ngIf="item.subcategory=='Smoothie'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div  *ngFor="let item of smoothiesdesserts">
+                <div class="item" *ngIf="item.subcategory=='Dessert'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
+            </div><br><br>
+            <div  *ngFor="let item of smoothiesdesserts">
+                <div class="item" *ngIf="item.subcategory!='Smoothie' && item.subcategory!='Dessert'">
+                    <div class="name">
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="price"> 
+                        <span [style]="(item.discount<item.price)?'text-decoration: line-through;':''">{{item.price|currency:'INR'}}</span>
+                        <br>
+                        <span [hidden]="(item.discount==item.price)" >{{item.discount|currency:'INR'}}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

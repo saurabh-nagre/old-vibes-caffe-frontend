@@ -13,7 +13,7 @@ import { FirestoreUploadService } from 'src/app/services/sales/firestore-upload.
 })
 export class PrintComponent implements OnInit {
 
-  items:{name:string,price:number,count:number}[] = []
+  items:{name:string,price:number,discount:number,count:number}[] = []
   mycontact:number = 0
   clientName!:string
   clientNumber!:number
@@ -23,36 +23,38 @@ export class PrintComponent implements OnInit {
   timeClock!:Date
   tableNo = -1
   disable = false
+  saving = 0
   constructor(private loginService:LoginService,
         private cartService:CartService,
         private router:Router,private dbservice:FirestoreappsService,
         private uploadService:FirestoreUploadService) { 
-      
-      if(!this.loginService.getUser()){
-          this.router.navigate(["login"],{replaceUrl:true});
-      }
-      else{
-        let temp = this.router.getCurrentNavigation()?.extras.queryParams
-        if(temp){
-          this.tableNo = temp['tableno']
-        }
-        this.cartService.getCart(this.tableNo).forEach((value,key)=>{
-          this.items.push(value);
-          this.grandTotal+=value.price*value.count;
-          this.totalQuantity+=value.count;
-        })
-
-        let client = this.cartService.getClient();
-        if(client.name!=""){
-          this.clientName = client.name;
-        }
-        if(client.number!=0){
-          this.clientNumber = client.number;
-        }
-      }
+          if(!this.loginService.getUser()){
+            this.router.navigate(["login"],{replaceUrl:true});
+          }
+          else{
+            let temp = this.router.getCurrentNavigation()?.extras.queryParams
+            if(temp)
+              this.tableNo = temp['tableno']
+          }
   }
 
   async ngOnInit(): Promise<void> {
+
+    this.cartService.getCart(this.tableNo).forEach((value,key)=>{
+            this.items.push(value);
+            this.grandTotal+=value.discount*value.count;
+            this.saving +=(value.price-value.discount)*value.count;
+            this.totalQuantity+=value.count;
+    })
+    
+    let client = this.cartService.getClient();
+      if(client.name!=""){
+        this.clientName = client.name;
+      }
+      if(client.number!=0){
+        this.clientNumber = client.number;
+      }     
+
     await getDoc(doc(this.dbservice.getDatabase(),'ownerDetails/contact')).then((value)=>{
       this.mycontact = value.get('contact')
     })
@@ -82,6 +84,7 @@ export class PrintComponent implements OnInit {
         itemlist:this.items,
         totalPay:this.grandTotal,
         billNo:this.billId,
+        saved:this.saving,
         itemscount:this.totalQuantity,
         timestamp: time
       }

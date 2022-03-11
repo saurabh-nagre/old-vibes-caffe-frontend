@@ -9,17 +9,13 @@ import { FirestoreappsService } from 'src/app/services/firestoreapps.service';
 export class DisplayComponent implements OnInit {
   
   categories!:any
-  breadomelette:{id:string,name:string,price:number,category: string;}[] = []
-  pizzapasta:{id:string,name:string,price:number,category: string;}[] = []
-  burgerfries:{id:string,name:string,price:number,category: string;}[] = []
-  teacoffeemocktails:{id:string,name:string,price:number,category: string;}[] = []
-  smoothiesdesserts:{id:string,name:string,price:number,category: string;}[] = []
-
-  list1hidden = false
-  list2hidden = true
-  list3hidden = true
-  list4hidden = true
-  list5hidden = true
+  breadomelette:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  pizzapasta:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  burgerfries:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  teacoffeemocktails:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  smoothiesdesserts:{id:string,name:string,price:number,discount:number,category: string,subcategory:string}[] = []
+  
+  listHidden = [false,true,true,true,true]
   constructor(private firestoreservice:FirestoreappsService) { }
 
   async ngOnInit(): Promise<void> {
@@ -46,26 +42,16 @@ export class DisplayComponent implements OnInit {
   }
 
   
-  camparator(a:{id:string,name:string,price:number,category:string},b:{id:string,name:string,price:number,category:string}){
+  camparator(a:{id:string,name:string,price:number,category:string,subcategory:string},b:{id:string,name:string,price:number,category:string,subcategory:string}){
     return a.price>b.price?1:-1;
   }
 
   changeList(listname:string){
-      if(this.categories[0].name!=listname)
-        this.list1hidden = true
-      else  this.list1hidden = false
-      if(this.categories[1].name!=listname)
-        this.list2hidden = true
-      else  this.list2hidden = false
-      if(this.categories[2].name!=listname)
-        this.list3hidden = true
-      else  this.list3hidden = false 
-      if(this.categories[3].name!=listname)
-        this.list4hidden = true
-      else  this.list4hidden = false
-      if(this.categories[4].name!=listname)
-        this.list5hidden = true
-      else  this.list5hidden = false
+      for(let i = 0;i<5;i++){
+        if(this.categories[i].name!=listname)
+          this.listHidden[i] = true
+        else  this.listHidden[i] = false
+      }
   }
 
   
