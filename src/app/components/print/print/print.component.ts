@@ -103,15 +103,12 @@ export class PrintComponent implements OnInit {
         const confirmation = confirm('Should Send SMS to Client!');
 
         if(confirmation){
-          let body = "Hi "+this.clientName+" Your total Pay is "+this.grandTotal+" for ";
+          let body = "Hello "+this.clientName+" Your total Pay is "+this.grandTotal+" for ";
           this.items.forEach((value)=>{
             body+=value.name+" "+value.count;
           });
           this.smsService.sendSms(body,this.clientNumber).subscribe((response:any)=>{
-            if(!(response.status==200)){
-              alert(response.message);
-            }
-            else alert(response.message);
+            alert(response.message);
           });
         }
       }
