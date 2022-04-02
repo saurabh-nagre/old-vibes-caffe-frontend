@@ -14,7 +14,7 @@ import { DisplayComponent } from './components/customer/display/display.componen
 import { MenuComponent } from './components/dashboard/menu/menu.component';
 import { SalesComponent } from './components/dashboard/sales/sales.component';
 import { DetailsComponent } from './components/dashboard/details/details.component';
-
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { DetailsComponent } from './components/dashboard/details/details.compone
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPrintModule
+    NgxPrintModule,
+    HttpClientModule
   ],
   providers: [FirestoreappsService],
   bootstrap: [AppComponent]

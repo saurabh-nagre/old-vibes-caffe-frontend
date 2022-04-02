@@ -5,6 +5,7 @@ import { CartService } from 'src/app/services/cart-services/cart.service';
 import { doc, getDoc } from 'firebase/firestore';
 import { FirestoreappsService } from 'src/app/services/firestoreapps.service';
 import { FirestoreUploadService } from 'src/app/services/sales/firestore-upload.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-print',
@@ -26,6 +27,7 @@ export class PrintComponent implements OnInit {
   saving = 0
   constructor(private loginService:LoginService,
         private cartService:CartService,
+        private smsService:MessageService,
         private router:Router,private dbservice:FirestoreappsService,
         private uploadService:FirestoreUploadService) { 
           if(!this.loginService.getUser()){
@@ -73,7 +75,7 @@ export class PrintComponent implements OnInit {
   printBill() {
      
   }
-  saveBill(){
+  async saveBill(){
     
     this.disable = true
     if(this.clientName || this.clientNumber){
@@ -88,7 +90,7 @@ export class PrintComponent implements OnInit {
         itemscount:this.totalQuantity,
         timestamp: time
       }
-      this.uploadService.uploadBill(bill).then((value)=>{
+      await this.uploadService.uploadBill(bill).then((value)=>{
         if(value){
           alert("Bill Saved Successfully!");
         }
@@ -96,6 +98,23 @@ export class PrintComponent implements OnInit {
           alert("Bill can't save!");
         }
       });
+
+      if(this.clientNumber){
+        const confirmation = confirm('Should Send SMS to Client!');
+
+        if(confirmation){
+          let body = "Hi "+this.clientName+" Your total Pay is "+this.grandTotal+" for ";
+          this.items.forEach((value)=>{
+            body+=value.name+" "+value.count;
+          });
+          this.smsService.sendSms(body,this.clientNumber).subscribe((response:any)=>{
+            if(!(response.status==200)){
+              alert(response.message);
+            }
+            else alert(response.message);
+          });
+        }
+      }
     }
     else{
       alert('Check the client Name and Number is added');

@@ -48,7 +48,7 @@ export class ListItemComponent implements OnInit {
   }
 
   changeCategory(event:any){
-    this.myitemSubcategory = this.subcategories[event.target.options.selectedIndex-1];
+    this.myitemSubcategory = this.subcategories[event.target.options.selectedIndex];
   }
   getCount(){
     const temp = this.cartService.getCount(this.mytableNo,this.item.name);
@@ -105,16 +105,17 @@ export class ListItemComponent implements OnInit {
               discount:this.myitemDiscount,
               subcategory:this.myitemSubcategory
             }).then(()=>{
-              this.router.navigate(['/dashboard/sales']).then((value)=>{
-                if(value){
-                  this.router.navigate(['/dashboard/menu']);
-                }
-                else{
-                  alert("Can't reload the page! But your changes has been saved!");
-                }
-              },()=>{
-                alert("Can't reload the page! But your changes has been saved!");
-              });
+              this.makeChecked();
+              // this.router.navigate(['/dashboard/sales']).then((value)=>{
+              //   if(value){
+              //     this.router.navigate(['/dashboard/menu']);
+              //   }
+              //   else{
+              //     alert("Can't reload the page! But your changes has been saved!");
+              //   }
+              // },()=>{
+              //   alert("Can't reload the page! But your changes has been saved!");
+              // });
           })
                        
       }
