@@ -1,6 +1,6 @@
 <div class="editor">
-    <button type ="button"  class="btn btn-sm btn-primary" (click)="proceedToPrint()">Proceed</button>
-    <button class="btn btn-sm btn-warning text-white" style="border-radius: 5px;" [style.background-color]="isHidden ? '#a52a2a':'#008000'" (click)="changeHidden()"> {{btnName}} </button>
+    <button type ="button"  class="btn btn-sm btn-primary" id = "printButton" (click)="proceedToPrint()">Proceed</button>
+    <button class="btn btn-sm btn-warning text-white" id = "editButton" style="border-radius: 5px;" [style.background-color]="isHidden ? '#a52a2a':'#008000'" (click)="changeHidden()"> {{btnName}} </button>
 </div>
 <div class="table-slider">
     <div *ngFor="let in of counter(tableCount); let i = index ">
@@ -12,7 +12,7 @@
 </div>
 <div class="menu">
     <div class="row ">
-        <div class="col"  *ngFor="let category of categories" >
+        <div class="col" *ngFor="let category of categories" >
             <div class = "bg-header " >
                 <h6 id ="category-text">{{category.name}}</h6>
                 <img id = "category-img" [src]="category.imageurl" alt="img">
@@ -21,7 +21,8 @@
     </div>
 
     <div class="row">
-        <div class="col list1">
+        <div class="col list1" >
+            <input type="checkbox" id="focus1">
             <div class="row"  *ngFor="let listitem of breadomelette" >
                 <app-list-item *ngIf="listitem.subcategory=='Bread'" [item]="listitem" (deleteItemEvent)="deleteList1($event)" [tableno] = "tableNo" [isEditable] = "!isHidden"></app-list-item>
             </div>
@@ -45,12 +46,13 @@
                     <option value="Bread">Bread</option>
                     <option value="Omlette">Omlette</option>
                 </select><br>
-                <input type="submit" class="btn btn-sm btn-success" [hidden]="isAddType1Hidden">
+                <input type="submit" class="btn btn-sm btn-success"[hidden]="isAddType1Hidden">
             </form>
             </div>
 
         </div>
-        <div class="col list2">
+        <div class="col list2" >
+            <input type="checkbox" id="focus2">
             <div class="row"  *ngFor="let listitem of pizzapasta">
                 <app-list-item *ngIf="listitem.subcategory=='Pizza'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList2($event)"></app-list-item>
             </div>
@@ -78,7 +80,8 @@
             </form>
             </div> 
         </div>
-        <div class="col list3">
+        <div class="col list3"  >
+            <input type="checkbox" id="focus3">
             <div class="row"  *ngFor="let listitem of burgerfries">
                 <app-list-item *ngIf="listitem.subcategory=='Burger'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList3($event)"></app-list-item>
             </div>
@@ -105,7 +108,8 @@
             </form>
             </div> 
         </div>
-        <div class="col list4">
+        <div class="col list4" >
+            <input type="checkbox" id="focus4">
             <div class="row"  *ngFor="let listitem of teacoffeemocktails">
                 <app-list-item *ngIf="listitem.subcategory=='Tea'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList4($event)"></app-list-item>
             </div>
@@ -137,6 +141,7 @@
             </div> 
         </div>
         <div class="col list5">
+            <input type="checkbox" id="focus5">
             <div class="row"  *ngFor="let listitem of smoothiesdesserts">
                 <app-list-item *ngIf="listitem.subcategory=='Smoothie'" [item]="listitem" [isEditable] = "!isHidden" [tableno] = "tableNo"  (deleteItemEvent)="deleteList5($event)"></app-list-item>
             </div>

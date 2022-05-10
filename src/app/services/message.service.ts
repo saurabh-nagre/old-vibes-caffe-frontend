@@ -8,7 +8,7 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   sendSms(body:string,number:number){
-    return this.http.post('https://old-vibes-caffe.herokuapp.com/sms',{message:body,number:number});
+    return this.http.post('https://telesign-sms-service.herokuapp.com/sms',{message:body,number:number});
   }
 
 }

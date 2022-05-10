@@ -41,7 +41,7 @@ export class PrintComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-
+    
     this.cartService.getCart(this.tableNo).forEach((value,key)=>{
             this.items.push(value);
             this.grandTotal+=value.discount*value.count;
@@ -90,30 +90,38 @@ export class PrintComponent implements OnInit {
         itemscount:this.totalQuantity,
         timestamp: time
       }
-      await this.uploadService.uploadBill(bill).then((value)=>{
+      await this.uploadService.uploadBill(bill).then(async (value)=>{
         if(value){
           alert("Bill Saved Successfully!");
+          const confirmation = confirm('Should Send SMS to Client!');
+
+          if(confirmation){
+            let body = "Hello "+this.clientName+" Your total Pay is "+this.grandTotal+" for ";
+             this.items.forEach((value)=>{
+              body+=value.name+" "+value.count;
+            });
+            this.smsService.sendSms(body,this.clientNumber).subscribe((response:any)=>{
+              console.log(response);
+              if(response.status==200){
+                alert(response.message);
+              }
+              else alert("SMS can't send!");
+            });
+            
+          }
         }
         else{
           alert("Bill can't save!");
+          this.disable = false;
         }
+      }).catch((reason)=>{
+        alert("Bill can't save!");
+        this.disable = false;
       });
 
-      if(this.clientNumber){
-        const confirmation = confirm('Should Send SMS to Client!');
-
-        if(confirmation){
-          let body = "Hello "+this.clientName+" Your total Pay is "+this.grandTotal+" for ";
-          this.items.forEach((value)=>{
-            body+=value.name+" "+value.count;
-          });
-          this.smsService.sendSms(body,this.clientNumber).subscribe((response:any)=>{
-            alert(response.message);
-          });
-        }
-      }
     }
     else{
+      this.disable = false;
       alert('Check the client Name and Number is added');
     }
   }

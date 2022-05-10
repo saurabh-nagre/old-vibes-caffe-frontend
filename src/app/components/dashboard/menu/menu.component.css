@@ -77,8 +77,13 @@ div{
 #category-img{
    width: 100%;
 }
-.list1{
+.list1 {
     background-color: lightpink;
+}
+#focus1 ,#focus2 ,#focus3, #focus4, #focus5{
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
 }
 .list2{
     background-color: lightyellow;

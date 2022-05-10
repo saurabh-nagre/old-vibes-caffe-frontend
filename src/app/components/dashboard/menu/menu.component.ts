@@ -11,7 +11,7 @@ import { FirestoreappsService } from 'src/app/services/firestoreapps.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-    
+  
   currentUser!:User
   categories!:any
   tableNo = 0
@@ -30,6 +30,42 @@ export class MenuComponent implements OnInit {
       if(!this.currentUser){
         this.router.navigate(['/login']);
       }
+
+      document.addEventListener('keydown',e=>{
+        if(e.key==='q' && e.altKey){
+            this.proceedToPrint();
+        }
+        if(e.key==='w' && e.altKey){
+          this.changeHidden();
+        }
+        if(e.key==='a' && e.altKey){
+          this.addTable();
+        }
+        if(e.key==='s' && e.altKey){
+          this.removeTable();
+        }
+        if( e.key>='z' && e.altKey){
+          let tableno =  prompt('Enter table number to shift!');
+          if(tableno){
+            this.changeTable(parseInt(tableno));
+          }
+        }
+        if(e.key==='1' && e.altKey){
+          document.getElementById('focus1')?.focus();
+        }
+        if(e.key==='2' && e.altKey){
+          document.getElementById('focus2')?.focus();
+        }
+        if(e.key==='3' && e.altKey){
+          document.getElementById('focus3')?.focus();
+        }
+        if(e.key==='4' && e.altKey){
+          document.getElementById('focus4')?.focus();
+        }
+        if(e.key==='5' && e.altKey){
+          document.getElementById('focus5')?.focus();
+        }
+      });
   }
 
   ngOnInit(): void {  
@@ -51,28 +87,35 @@ export class MenuComponent implements OnInit {
         this.smoothiesdesserts = value.sort( this.camparator);    
       });
       this.tableCount = this.cartService.getTotalTables();
+      
   }
   counter(num:number){
     return new Array(num);
   }
   changeTable(no:number){  
-    
-    if(confirm("Do you want to switch tables?")){
-      this.tableNo = no;
+
+    if(no<this.tableCount && confirm("Do you want to switch tables?")){
+      this.tableNo = no-1;
     }
-    
+    else return;
+
+    console.log('repeat');
   }
   addTable(){
+    console.log(this.tableCount);
       this.cartService.addTable();
       this.tableCount = this.cartService.getTotalTables();
+      console.log(this.tableCount);
   }
 
   removeTable(){
+    console.log(this.tableCount);
     this.cartService.removeLastTable(); 
     this.tableCount = this.cartService.getTotalTables();
     if(this.tableNo>=this.tableCount){
       this.tableNo = 0;
     }
+    console.log(this.tableCount);
   }
 
   camparator(a:{id:string,name:string,price:number,category:string,subcategory:string},b:{id:string,name:string,price:number,category:string,subcategory:string}){
